@@ -47,6 +47,7 @@
     "docAlerts_one": "May 1 dokumento sa My Docs na kailangan ng pansin",
     "docAlerts_other": "May {{count}} dokumento sa My Docs na kailangan ng pansin",
     "search": "Hanapin: NBI, passport, birth certificate…",
+    "searchDesktop": "Maghanap ng dokumento (hal., NBI Clearance, Pasaporte, Birth Certificate)",
     "findDoc": "Maghanap ng dokumento",
     "allGuides": "Lahat ng gabay",
     "planVisit": "Ihanda ang lakad",

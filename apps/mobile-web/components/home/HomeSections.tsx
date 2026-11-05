@@ -45,9 +45,9 @@ export function PopularGuides({ guides }: { guides: Guide[] }) {
             borderColor: colors.refinedBorder,
           }}
         >
-          <Icon name="document" size={30} color={colors.primary} />
+          <Icon name="document" size={isDesktop ? 34 : 30} color={colors.primary} />
           <View className="flex-1 gap-1">
-            <AppText variant="body" weight="semibold">
+            <AppText variant="body" weight="bold">
               {pick(guide.title, language)}
             </AppText>
             <AppText variant="small" tone="muted">
@@ -80,8 +80,8 @@ export function VisitTools({ tiles }: { tiles: Tile[] }) {
           className="min-h-[52px] flex-row items-center gap-3 rounded-lg border px-3 py-3 active:bg-primary-soft"
           style={{ borderColor: colors.refinedBorder }}
         >
-          <Icon name={tile.icon} size={21} color={colors.primary} />
-          <AppText variant="body" weight="medium" style={{ flex: 1 }}>
+          <Icon name={tile.icon} size={26} color={colors.primary} />
+          <AppText variant="body" weight="semibold" style={{ flex: 1 }}>
             {tile.label}
           </AppText>
           <Icon name="chevronRight" size={16} color={colors.primary} />

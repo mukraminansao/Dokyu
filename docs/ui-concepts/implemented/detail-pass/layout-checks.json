@@ -1,0 +1,23 @@
+{
+  "phone": {
+    "location": [
+      {
+        "height": 44,
+        "text": "Jolo"
+      }
+    ],
+    "navigationBackground": "rgb(255, 255, 255)",
+    "scrollWidth": 390,
+    "selectedHomeFill": "#0635CB",
+    "width": 390
+  },
+  "desktop": {
+    "heroLeft": 234,
+    "heroRight": 1326.666748046875,
+    "heroWidth": 1092.666748046875,
+    "rightMargin": 39.333251953125,
+    "scrollWidth": 1366,
+    "viewport": 1366
+  },
+  "largeTextControlsFit": true
+}

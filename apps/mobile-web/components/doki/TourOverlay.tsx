@@ -14,6 +14,7 @@ import { Confetti } from './Confetti';
 import { useReducedMotion } from '../../lib/motion';
 import { useTour, type Rect } from '../../lib/tour';
 import { useLayout } from '../../lib/useLayout';
+import { useSettings } from '../../lib/settings';
 
 const native = Platform.OS !== 'web';
 const PAD = 8;
@@ -129,6 +130,7 @@ export function TourOverlay() {
   const { t } = useTranslation();
   const tour = useTour();
   const { isDesktop } = useLayout();
+  const { largeText } = useSettings();
   const reduced = useReducedMotion();
   const { width: W, height: H } = useWindowDimensions();
   const D = isDesktop ? 110 : 92;
@@ -142,6 +144,7 @@ export function TourOverlay() {
   const [talking, setTalking] = useState(false);
   const [mouth, setMouth] = useState(false);
   const [burst, setBurst] = useState(0);
+  const [bubbleHeight, setBubbleHeight] = useState(240);
 
   const fade = useRef(new Animated.Value(0)).current;
   const hole = useRef({
@@ -197,6 +200,8 @@ export function TourOverlay() {
     if (!step) return;
     let cancelled = false;
     let frames: ReturnType<typeof setInterval> | undefined;
+    let gait: Animated.CompositeAnimation | undefined;
+    let travel: Animated.CompositeAnimation | undefined;
     setPlacement((p) => (p ? { ...p } : p));
     setTalking(false);
 
@@ -251,9 +256,10 @@ export function TourOverlay() {
           Animated.timing(bob, { toValue: 0, duration: 85, useNativeDriver: native }),
         ]),
       );
+      gait = bobLoop;
       bobLoop.start();
       holeAnim.start();
-      Animated.parallel([
+      travel = Animated.parallel([
         Animated.timing(dokiX, {
           toValue: p.doki.x,
           duration,
@@ -266,7 +272,8 @@ export function TourOverlay() {
           easing: Easing.inOut(Easing.quad),
           useNativeDriver: native,
         }),
-      ]).start(() => {
+      ]);
+      travel.start(() => {
         if (frames) clearInterval(frames);
         bobLoop.stop();
         bob.setValue(0);
@@ -280,6 +287,9 @@ export function TourOverlay() {
     return () => {
       cancelled = true;
       if (frames) clearInterval(frames);
+      gait?.stop();
+      travel?.stop();
+      bob.setValue(0);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [steps, index, W, H]);
@@ -313,6 +323,14 @@ export function TourOverlay() {
   const step = steps[index];
   const last = index === steps.length - 1;
   const p = placement;
+  const desiredTop = p
+    ? 'top' in p.bubble
+      ? p.bubble.top
+      : H - p.bubble.bottom - bubbleHeight
+    : 16;
+  const bubbleTop = clamp(desiredTop, 16, Math.max(16, H - bubbleHeight - 16));
+  const characterOffset =
+    p?.bubble.mode === 'below' ? Math.min(0, bubbleTop - p.doki.y - D * 1.2 - 8) : 0;
 
   const pose: DokiPose = walking ? (walkFrame ? 'walk2' : 'walk') : (p?.pose ?? 'idle');
   const facing = walking ? walkFacing : (p?.facing ?? 'right');
@@ -320,11 +338,17 @@ export function TourOverlay() {
   const ringFade = pulse.interpolate({ inputRange: [0, 1], outputRange: [0.8, 0] });
 
   const footer = (
-    <View className="flex-row items-center justify-between gap-3">
+    <View
+      className="justify-between gap-2"
+      style={{
+        flexDirection: largeText || W < 360 ? 'column' : 'row',
+        alignItems: largeText || W < 360 ? 'stretch' : 'center',
+      }}
+    >
       <AppText variant="caption" tone="muted">
         {t('tour.counter', { n: index + 1, total: steps.length })}
       </AppText>
-      <View className="flex-row items-center gap-1">
+      <View className="flex-row items-center gap-1" style={{ alignSelf: 'flex-end' }}>
         {!last ? (
           <Pressable
             accessibilityRole="button"
@@ -489,7 +513,10 @@ export function TourOverlay() {
             position: 'absolute',
             left: 0,
             top: 0,
-            transform: [{ translateX: dokiX }, { translateY: dokiY }],
+            transform: [
+              { translateX: dokiX },
+              { translateY: Animated.add(dokiY, characterOffset) },
+            ],
           }}
         >
           <Animated.View style={{ transform: [{ translateY: bob }] }}>
@@ -507,11 +534,15 @@ export function TourOverlay() {
       {/* speech bubble */}
       {p && talking && step ? (
         <View
+          onLayout={(event) => {
+            const height = event.nativeEvent.layout.height;
+            setBubbleHeight((current) => (Math.abs(current - height) > 1 ? height : current));
+          }}
           style={{
             position: 'absolute',
             left: p.bubble.left,
             width: p.bubble.width,
-            ...('top' in p.bubble ? { top: p.bubble.top } : { bottom: p.bubble.bottom }),
+            top: bubbleTop,
             alignItems:
               p.bubble.mode === 'side' && p.bubble.tail === 'right' ? 'flex-end' : 'flex-start',
           }}
@@ -529,6 +560,7 @@ export function TourOverlay() {
             onTyping={onTyping}
             footer={footer}
             maxWidth={p.bubble.width}
+            maxHeight={H - 32}
             tailAt={clamp(p.doki.x + D / 2 - p.bubble.left - 7, 20, p.bubble.width - 34)}
           />
         </View>

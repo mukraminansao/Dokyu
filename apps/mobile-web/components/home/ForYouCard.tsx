@@ -35,7 +35,7 @@ export function ForYouCard({ item }: { item: ForYou }) {
     onPress = () =>
       router.push({ pathname: '/guides/[slug]/checklist', params: { slug: item.guide.slug } });
     art = (
-      <Icon name="documentPerson" size={horizontal ? 64 : 44} color="#FFFFFF" strokeWidth={1.7} />
+      <Icon name="documentPerson" size={horizontal ? 104 : 72} color="#FFFFFF" strokeWidth={1.7} />
     );
   } else if (item.kind === 'goal') {
     const goal = GOALS.find((g) => g.slug === item.goal);
@@ -47,7 +47,7 @@ export function ForYouCard({ item }: { item: ForYou }) {
     cta = t('home.goalCta', { title: pick(item.guide.title, language) });
     onPress = () => router.push({ pathname: '/goals', params: { goal: item.goal } });
     art = (
-      <Icon name="documentPerson" size={horizontal ? 64 : 44} color="#FFFFFF" strokeWidth={1.7} />
+      <Icon name="documentPerson" size={horizontal ? 104 : 72} color="#FFFFFF" strokeWidth={1.7} />
     );
   } else {
     label = t('home.pickLabel');
@@ -56,7 +56,7 @@ export function ForYouCard({ item }: { item: ForYou }) {
     cta = t('home.pickCta');
     onPress = () => router.push('/goals');
     art = (
-      <Icon name="documentPerson" size={horizontal ? 64 : 44} color="#FFFFFF" strokeWidth={1.7} />
+      <Icon name="documentPerson" size={horizontal ? 104 : 72} color="#FFFFFF" strokeWidth={1.7} />
     );
   }
 
@@ -69,9 +69,9 @@ export function ForYouCard({ item }: { item: ForYou }) {
         {...press.handlers}
         className="overflow-hidden rounded-card bg-primary"
         style={{
-          gap: horizontal ? 20 : 12,
+          gap: horizontal ? 20 : 8,
           padding: horizontal ? 20 : 16,
-          paddingLeft: horizontal ? 43 : 24,
+          paddingLeft: horizontal ? 21 : 9,
           flexDirection: horizontal ? 'row' : 'column',
           alignItems: horizontal ? 'center' : 'stretch',
         }}
@@ -79,34 +79,44 @@ export function ForYouCard({ item }: { item: ForYou }) {
         <GradientFill from={colors.primary} to="#1234B3" />
         <View
           className="flex-row items-center"
-          style={{ flex: horizontal ? 1 : undefined, gap: horizontal ? 24 : 16 }}
+          style={{ flex: horizontal ? 1 : undefined, gap: 20 }}
         >
           {!largeText ? (
             <View
               aria-hidden
               pointerEvents="none"
               style={{
-                paddingRight: horizontal ? 32 : 16,
-                borderRightWidth: 1,
+                paddingRight: horizontal ? 16 : 0,
+                borderRightWidth: horizontal ? 1 : 0,
                 borderRightColor: '#7189ED',
               }}
             >
               {art}
             </View>
           ) : null}
-          <View className="flex-1" style={{ gap: horizontal ? 8 : 4 }}>
-            <AppText variant="body" weight="semibold" style={{ color: '#FFFFFF' }}>
+          <View className="flex-1" style={{ gap: horizontal ? 6 : 4 }}>
+            <AppText
+              variant="body"
+              weight="semibold"
+              numberOfLines={largeText ? undefined : 1}
+              style={{ color: '#FFFFFF' }}
+            >
               {label}
             </AppText>
             <AppText
               variant={horizontal ? 'hero' : 'h1'}
               weight="bold"
               tone="inverse"
+              numberOfLines={largeText ? undefined : 2}
               style={{ lineHeight: largeText ? 44 : horizontal ? 40 : 30 }}
             >
               {title}
             </AppText>
-            <AppText variant="body" style={{ color: '#FFFFFF' }}>
+            <AppText
+              variant="body"
+              numberOfLines={largeText ? undefined : 2}
+              style={{ color: '#FFFFFF' }}
+            >
               {text}
             </AppText>
             {item.kind === 'continue' ? (
@@ -114,8 +124,8 @@ export function ForYouCard({ item }: { item: ForYou }) {
                 accessibilityRole="progressbar"
                 accessibilityLabel={t('home.checklistProgress')}
                 accessibilityValue={{ min: 0, max: item.total, now: item.done, text }}
-                className="mt-1 overflow-hidden rounded-full"
-                style={{ height: 10, backgroundColor: 'rgba(255,255,255,0.3)' }}
+                className="overflow-hidden rounded-full"
+                style={{ height: horizontal ? 14 : 12, backgroundColor: '#D4DFFF' }}
               >
                 <Animated.View
                   style={{

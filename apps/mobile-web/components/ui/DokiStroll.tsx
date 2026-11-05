@@ -85,7 +85,7 @@ export function DokiStroll({ message = 'Tap here to see what to bring.' }: { mes
             transform: [{ translateX: x }, { translateY: bob }],
           }}
         >
-          <Doki size={SIZE} pose={pose} alive={pose === 'point'} />
+          <Doki size={SIZE} pose={pose} />
         </Animated.View>
       </View>
       <View className="flex-row items-center justify-between">

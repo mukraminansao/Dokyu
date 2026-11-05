@@ -197,9 +197,21 @@ function Showcase() {
       t('showcase.doki'),
       <View key="dk" className="gap-4">
         <View className="flex-row flex-wrap items-end gap-2">
-          {(['idle', 'walk', 'point', 'wave', 'happy'] as const).map((p) => (
+          {(
+            [
+              'idle',
+              'walk',
+              'walk2',
+              'point',
+              'pointDown',
+              'wave',
+              'talk',
+              'happy',
+              'worried',
+            ] as const
+          ).map((p) => (
             <View key={p} className="items-center">
-              <Doki size={96} pose={p} />
+              <Doki size={96} pose={p} mouthOpen={p === 'talk'} />
               <AppText variant="small" tone="muted">
                 {p}
               </AppText>

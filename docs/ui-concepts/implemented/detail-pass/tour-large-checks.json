@@ -1,0 +1,87 @@
+[
+  {
+    "buttons": [
+      {
+        "bottom": 572,
+        "text": "Laktawan",
+        "top": 532
+      },
+      {
+        "bottom": 572,
+        "text": "Susunod",
+        "top": 532
+      }
+    ],
+    "height": 740
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 689.5978393554688,
+        "text": "Laktawan",
+        "top": 655.3783569335938
+      },
+      {
+        "bottom": 689.5978393554688,
+        "text": "Susunod",
+        "top": 655.3783569335938
+      }
+    ],
+    "height": 740
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 528.1837692260742,
+        "text": "Laktawan",
+        "top": 493.4053649902344
+      },
+      {
+        "bottom": 528.1837692260742,
+        "text": "Susunod",
+        "top": 493.4053649902344
+      }
+    ],
+    "height": 740
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 478.4585189819336,
+        "text": "Laktawan",
+        "top": 439.7252807617187
+      },
+      {
+        "bottom": 478.4585189819336,
+        "text": "Susunod",
+        "top": 439.7252807617187
+      }
+    ],
+    "height": 740
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 479.9727783203125,
+        "text": "Laktawan",
+        "top": 449.70703125
+      },
+      {
+        "bottom": 479.9727783203125,
+        "text": "Susunod",
+        "top": 449.70703125
+      }
+    ],
+    "height": 740
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 472.1842651367187,
+        "text": "Tara na!",
+        "top": 438.25091552734375
+      }
+    ],
+    "height": 740
+  }
+]

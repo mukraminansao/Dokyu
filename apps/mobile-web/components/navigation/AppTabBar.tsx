@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import type { BottomTabBarProps } from 'expo-router/tabs';
 import { colors, shadow, size } from '@dokyu/shared';
 import { AppText } from '../ui/AppText';
-import { ReferenceDoki } from '../ui/ReferenceDoki';
+import { DokiFace } from '../ui/Doki';
 import { Icon, type IconName } from '../ui/Icon';
 import { Wordmark } from '../ui/Wordmark';
 import { Disclaimer } from '../ui/Disclaimer';
@@ -62,6 +62,7 @@ function BottomBar(props: BottomTabBarProps) {
         paddingBottom: Math.max(insets.bottom, 10),
         paddingTop: 6,
         overflow: 'visible',
+        backgroundColor: colors.surface,
       }}
     >
       {/* Reserve the raised control inside the tab bar's touch bounds on native.
@@ -70,7 +71,7 @@ function BottomBar(props: BottomTabBarProps) {
         aria-hidden
         pointerEvents="none"
         className="absolute inset-x-0 bottom-0 border-t border-line bg-surface"
-        style={{ top: 30, boxShadow: '0 -4px 20px rgba(19, 40, 122, 0.04)' }}
+        style={{ top: 26 }}
       />
       {tabs.map((tab) =>
         tab.icon === 'doki' ? (
@@ -94,16 +95,25 @@ function BottomBar(props: BottomTabBarProps) {
                 borderRadius: 24,
                 borderWidth: 5,
                 borderColor: colors.surface,
-                boxShadow: tab.focused ? `${shadow.focusRing}, ${shadow.doki}` : shadow.doki,
+                boxShadow: tab.focused ? `0 0 0 3px #D7E7FF, ${shadow.doki}` : shadow.doki,
               }}
             >
               <PopOnChange value={tab.focused} from={0.7}>
                 <Float amount={2.5} duration={1300}>
-                  <ReferenceDoki size={56} faceOnly />
+                  <DokiFace size={56} active={tab.focused} />
                 </Float>
               </PopOnChange>
             </View>
-            <AppText variant="caption" weight="bold" tone="primary" style={{ textAlign: 'center' }}>
+            <AppText
+              variant="caption"
+              weight="bold"
+              tone="primary"
+              style={{
+                textAlign: 'center',
+                fontSize: largeText ? 20 : 15,
+                lineHeight: largeText ? 26 : 20,
+              }}
+            >
               Doki
             </AppText>
           </Pressable>
@@ -122,8 +132,9 @@ function BottomBar(props: BottomTabBarProps) {
             <PopOnChange value={tab.focused} from={0.55}>
               <Icon
                 name={tab.icon}
-                color={tab.focused ? colors.primary : colors.textMuted}
-                fill={tab.focused ? colors.primaryTint : 'none'}
+                size={26}
+                color={tab.focused ? colors.primary : colors.primaryDark}
+                fill={tab.focused && tab.icon === 'home' ? colors.primary : 'none'}
               />
             </PopOnChange>
             <TabLabel focused={tab.focused}>{t(tab.label)}</TabLabel>
@@ -135,12 +146,19 @@ function BottomBar(props: BottomTabBarProps) {
 }
 
 function TabLabel({ focused, children }: { focused: boolean; children: string }) {
+  const { largeText } = useSettings();
   return (
     <AppText
       variant="caption"
       weight={focused ? 'semibold' : 'medium'}
-      tone={focused ? 'primary' : 'muted'}
-      style={{ textAlign: 'center' }}
+      tone={focused ? 'primary' : 'primaryDark'}
+      style={{
+        textAlign: 'center',
+        width: '100%',
+        flexShrink: 1,
+        fontSize: largeText ? 17 : 12,
+        lineHeight: largeText ? 23 : 16,
+      }}
     >
       {children}
     </AppText>

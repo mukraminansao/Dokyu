@@ -72,7 +72,12 @@ export default function Home() {
   // Document types: each opens Guides on that category.
   const findTiles: Tile[] = [
     { key: 'ids', icon: 'identity', label: t('tiles.ids'), category: 'identity' },
-    { key: 'clearances', icon: 'shield', label: t('tiles.clearances'), category: 'clearances' },
+    {
+      key: 'clearances',
+      icon: 'shieldCheck',
+      label: t('tiles.clearances'),
+      category: 'clearances',
+    },
     { key: 'civil', icon: 'document', label: t('tiles.civilRegistry'), category: 'civilRegistry' },
     { key: 'travel', icon: 'plane', label: t('tiles.travel'), category: 'travel' },
   ].map(({ category, ...tile }) => ({
@@ -104,9 +109,9 @@ export default function Home() {
   ];
 
   return (
-    <Screen wide tourScroll canvas>
+    <Screen wide tourScroll canvas dashboard className={isDesktop ? 'gap-4' : 'gap-3'}>
       {!isDesktop ? (
-        <FadeIn>
+        <FadeIn style={{ marginBottom: -4 }}>
           <View className="flex-row items-center justify-between gap-4">
             <Wordmark size={32} />
             <Pressable
@@ -115,13 +120,12 @@ export default function Home() {
               onPress={() => router.push('/account')}
               className="h-11 w-11 items-center justify-center rounded-full border border-line bg-primary-soft active:bg-primary-soft"
             >
-              {firstName ? (
-                <AppText variant="body" weight="bold" tone="primary">
-                  {firstName[0]?.toUpperCase()}
-                </AppText>
-              ) : (
-                <Icon name="account" size={20} color={colors.primary} />
-              )}
+              <Icon
+                name="accountFilled"
+                size={22}
+                color={colors.primaryDark}
+                fill={colors.primaryDark}
+              />
             </Pressable>
           </View>
         </FadeIn>
@@ -178,12 +182,12 @@ export default function Home() {
           <View className="gap-4">
             <VisitTools tiles={planTiles} />
             <View className="flex-row items-start gap-3 rounded-card bg-gold-soft p-4">
-              <Icon name="bell" size={26} color="#B18100" />
+              <Icon name="bell" size={26} color="#FFBB00" />
               <View className="flex-1 gap-1">
-                <AppText variant="body" weight="semibold" style={{ color: '#5C4300' }}>
+                <AppText variant="body" weight="semibold" tone="primaryDark">
                   {t('home.visitTipTitle')}
                 </AppText>
-                <AppText variant="small" style={{ color: '#5C4300' }}>
+                <AppText variant="small" tone="primaryDark">
                   {t('home.visitTipBody')}
                 </AppText>
               </View>
@@ -212,6 +216,7 @@ export default function Home() {
 function HomeSearch() {
   const { t } = useTranslation();
   const router = useRouter();
+  const { isDesktop } = useLayout();
   return (
     <Pressable
       accessibilityRole="button"
@@ -222,7 +227,7 @@ function HomeSearch() {
     >
       <Icon name="search" size={20} color={colors.textMuted} />
       <AppText variant="body" tone="muted" style={{ flex: 1 }}>
-        {t('home.search')}
+        {t(isDesktop ? 'home.searchDesktop' : 'home.search')}
       </AppText>
     </Pressable>
   );

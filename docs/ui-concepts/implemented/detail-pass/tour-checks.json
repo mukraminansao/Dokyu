@@ -1,0 +1,99 @@
+[
+  {
+    "buttons": [
+      {
+        "bottom": 445.0636520385742,
+        "text": "Skip",
+        "top": 410.7027282714844
+      },
+      {
+        "bottom": 445.0636520385742,
+        "text": "Next",
+        "top": 410.7027282714844
+      }
+    ],
+    "height": 844,
+    "pose": "doki-wave",
+    "text": "Hi, I'm Doki! I'll help you get your papers in one trip. Let me show you around. It takes 20 seconds.Hi, I'm Do1 of 6SkipNext"
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 398.0089645385742,
+        "text": "Skip",
+        "top": 360.8597106933594
+      },
+      {
+        "bottom": 398.0089645385742,
+        "text": "Next",
+        "top": 360.8597106933594
+      }
+    ],
+    "height": 844,
+    "pose": "doki-point",
+    "text": "Start here. Pick what you need, like an ID or a clearance, and I'll show you exactly what to bring.Start here2 of 6SkipNext"
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 490.3017692565918,
+        "text": "Skip",
+        "top": 455.8005065917969
+      },
+      {
+        "bottom": 490.3017692565918,
+        "text": "Next",
+        "top": 455.8005065917969
+      }
+    ],
+    "height": 844,
+    "pose": "doki-point",
+    "text": "This card changes for you. It remembers your checklists and shows what to do next.This car3 of 6SkipNext"
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 589.8403739929199,
+        "text": "Skip",
+        "top": 551.3741455078125
+      },
+      {
+        "bottom": 589.8403739929199,
+        "text": "Next",
+        "top": 551.3741455078125
+      }
+    ],
+    "height": 844,
+    "pose": "doki-pointDown",
+    "text": "Stuck? Tap me anytime. I'll answer in English or Tagalog.Stuck? Tap m4 of 6SkipNext"
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 629.1192626953125,
+        "text": "Skip",
+        "top": 594.75830078125
+      },
+      {
+        "bottom": 629.1192626953125,
+        "text": "Next",
+        "top": 594.75830078125
+      }
+    ],
+    "height": 844,
+    "pose": "doki-pointDown",
+    "text": "Every guide lives here: requirements, fees, and the official link to register online.Every gu5 of 6SkipNext"
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 429.9323120117187,
+        "text": "Let's go!",
+        "top": 392.5636596679687
+      }
+    ],
+    "height": 844,
+    "pose": "doki-happy",
+    "text": "That's it! Prepare at home, visit the office once. Let's go!That's i6 of 6Let's go!"
+  }
+]

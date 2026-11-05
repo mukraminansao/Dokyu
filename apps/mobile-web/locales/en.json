@@ -47,6 +47,7 @@
     "docAlerts_one": "1 document in My Docs needs your attention",
     "docAlerts_other": "{{count}} documents in My Docs need your attention",
     "search": "Search for a document…",
+    "searchDesktop": "Search for a document (e.g., NBI Clearance, Passport, Birth Certificate)",
     "findDoc": "Find a document",
     "allGuides": "All guides",
     "planVisit": "Plan your visit",

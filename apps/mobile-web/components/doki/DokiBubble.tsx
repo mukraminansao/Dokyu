@@ -3,7 +3,7 @@
  * so Doki can move his mouth. Screen readers get the whole sentence at once. Tapping it shows the full text.
  */
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Animated, Platform, Pressable, View } from 'react-native';
+import { Animated, Platform, Pressable, ScrollView, View } from 'react-native';
 import { colors } from '@dokyu/shared';
 import { AppText } from '../ui/AppText';
 import { useReducedMotion } from '../../lib/motion';
@@ -44,6 +44,7 @@ export function DokiBubble({
   footer,
   maxWidth = 300,
   tailAt = 28,
+  maxHeight,
 }: {
   text: string;
   /** Which side the little tail points to (towards Doki). */
@@ -53,6 +54,8 @@ export function DokiBubble({
   maxWidth?: number;
   /** For top and bottom tails: distance from the bubble's left edge. */
   tailAt?: number;
+  /** Keeps tour controls visible in short windows and large-text mode. */
+  maxHeight?: number;
 }) {
   const reduced = useReducedMotion();
   const { visible, typing, finish } = useTypewriter(text);
@@ -112,20 +115,22 @@ export function DokiBubble({
             ...tailStyle,
           }}
         />
-        <View>
-          {/* the full text keeps the size steady while the visible part types over it */}
-          <AppText variant="body" weight="medium" style={{ opacity: 0 }} aria-hidden>
-            {text}
-          </AppText>
-          <AppText
-            variant="body"
-            weight="medium"
-            style={{ position: 'absolute', top: 0, left: 0, right: 0 }}
-            aria-hidden
-          >
-            {visible}
-          </AppText>
-        </View>
+        <ScrollView style={maxHeight ? { maxHeight: Math.max(64, maxHeight - 156) } : undefined}>
+          <View>
+            {/* the full text keeps the size steady while the visible part types over it */}
+            <AppText variant="body" weight="medium" style={{ opacity: 0 }} aria-hidden>
+              {text}
+            </AppText>
+            <AppText
+              variant="body"
+              weight="medium"
+              style={{ position: 'absolute', top: 0, left: 0, right: 0 }}
+              aria-hidden
+            >
+              {visible}
+            </AppText>
+          </View>
+        </ScrollView>
         {footer}
       </Pressable>
     </Animated.View>

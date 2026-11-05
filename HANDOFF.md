@@ -1,5 +1,9 @@
 # Dokyu: handoff for the next session
 
+## Reference detail correction and articulated Doki (5 November 2026)
+
+The user requested a closer match and rejected the single-frame character. The latest pass replaces active PNG mascot placements with an articulated, reference-shaped SVG rig: independent limbs, walking gait, blinking/gaze, expressions, speaking mouth and badge sway. Banner Doki starts the Home tour. Home now uses the available desktop width; mobile header/location/avatar, solid selected icons, white navigation, progress-card icon/spacing, shield check, typography and search details were corrected. Large-text tour placement and the 320px navbar overflow were fixed during direct browser checks. See [REFERENCE-DETAIL-PASS.md](docs/REFERENCE-DETAIL-PASS.md) for the current checklist and evidence. The static-image implementation and release notes below describe the previous iteration.
+
 ## UI refinement and Doki walkthroughs (5 November 2026)
 
 Implemented the approved Bayan Blue refined composition, with navy typography, the 210px desktop sidebar, 880px Home content, compact phone layout and raised central Doki button. Shared typography and surfaces now apply across the app. All active Doki placements reuse the transparent extraction-derived rendition of the user's approved mascot; the legacy SVG character has been removed. The rendition preserves the reference identity but is not a claim of pixel-identical extraction.

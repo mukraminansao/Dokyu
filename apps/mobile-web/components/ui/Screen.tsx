@@ -19,6 +19,7 @@ export function Screen({
   className,
   tourScroll = false,
   canvas = true,
+  dashboard = false,
 }: {
   children: ReactNode;
   wide?: boolean;
@@ -27,6 +28,8 @@ export function Screen({
   tourScroll?: boolean;
   /** Soft canvas for the refined Home; other screens retain their current surface. */
   canvas?: boolean;
+  /** Home fills the available desktop workspace. */
+  dashboard?: boolean;
 }) {
   const { isDesktop } = useLayout();
   const reduced = useReducedMotion();
@@ -79,7 +82,9 @@ export function Screen({
         <Animated.View style={{ opacity, transform: [{ translateY }] }}>
           <View
             className={cn('w-full self-center', canvas ? 'gap-4' : 'gap-5', className)}
-            style={{ maxWidth: canvas ? 880 : wide ? 1080 : 760 }}
+            style={{
+              maxWidth: dashboard && isDesktop ? undefined : canvas ? 880 : wide ? 1080 : 760,
+            }}
           >
             <ConnectionNotice />
             {children}

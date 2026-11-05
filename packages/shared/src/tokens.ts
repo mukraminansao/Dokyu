@@ -3,7 +3,7 @@
  * One source of truth for the Expo app (NativeWind theme) and the staff web dashboard.
  */
 export const colors = {
-  primary: '#2042C4',
+  primary: '#0635CB',
   primaryDark: '#090B3B',
   primarySoft: '#ECF0FF',
   primaryTint: '#D5DEFF',
@@ -23,9 +23,9 @@ export const colors = {
   surface: '#FFFFFF',
   surfaceAlt: '#F4F6FC',
   refinedBorder: '#D5DFF3',
-  refinedCanvas: '#FAFCFF',
-  heroTop: '#EAF2FF',
-  heroBottom: '#D9E8FF',
+  refinedCanvas: '#FFFFFF',
+  heroTop: '#E2EDFF',
+  heroBottom: '#D4E6FF',
   scrim: 'rgba(10, 18, 44, 0.66)',
 } as const;
 

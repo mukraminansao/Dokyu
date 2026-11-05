@@ -13,6 +13,8 @@ const PATHS = {
   guides: 'M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2zM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z',
   docs: 'M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9L9.4 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z',
   account: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c0-4 4-6 8-6s8 2 8 6',
+  accountFilled: 'M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21v-2a8 6 0 0 1 16 0v2z',
+  pinFilled: 'M12 22S4 14 4 9a8 8 0 1 1 16 0c0 5-8 13-8 13zM12 6a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',
   palette:
     'M12 3a9 9 0 1 0 0 18c1.1 0 1.5-.8 1.5-1.5 0-1.5-1-1.7-1-3 0-1 .8-1.5 2-1.5H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3zM7.5 11.5h.01M10 7.5h.01M15 7.5h.01',
   check: 'M5 12.5 10 17.5 19 7',
@@ -29,6 +31,7 @@ const PATHS = {
   mail: 'M3 6h18v12H3zM3 7l9 6 9-6',
   pin: 'M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
   shield: 'M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z',
+  shieldCheck: 'M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6zM8 11l3 3 5-6',
   logout: 'M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11',
   house: 'M4 11 12 4l8 7M6 9.5V20h12V9.5M10 20v-5h4v5',
   building: 'M4 21V8l8-5 8 5v13M2 21h20M8 21v-6h8v6M8 11h.01M12 11h.01M16 11h.01',
@@ -94,8 +97,12 @@ export function Icon({
         strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
+        fillRule="evenodd"
       >
         <Path d={PATHS[name]} />
+        {name === 'documentPerson' ? (
+          <Path d="M10 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" fill={color} stroke="none" />
+        ) : null}
       </Svg>
     </View>
   );
