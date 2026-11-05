@@ -1,5 +1,15 @@
 # Dokyu: handoff for the next session
 
+## UI refinement and Doki walkthroughs (5 November 2026)
+
+Implemented the approved Bayan Blue refined composition, with navy typography, the 210px desktop sidebar, 880px Home content, compact phone layout and raised central Doki button. Shared typography and surfaces now apply across the app. All active Doki placements reuse the transparent extraction-derived rendition of the user's approved mascot; the legacy SVG character has been removed. The rendition preserves the reference identity but is not a claim of pixel-identical extraction.
+
+Doki guidance now lives at the application root. Sign-in, sign-up and recovery have independent four-step walkthroughs; Home has a versioned six-step walkthrough. New users keep the welcome/setup flow. Existing users get the redesigned Home guide once. Account offers **Restart all Doki guides** (introduction plus future account/Home guides) and **Show me around again** (Home only). These controls reset tour completion only, never document data. The overlay supports Skip, Escape, keyboard focus containment and hidden background semantics.
+
+Verification: 53 database-backed server tests and 29 shared tests pass. Lint, all workspace typechecks, web export and Android Hermes export pass. Browser checks covered independent account guides, real local demo sign-in, six Home steps, completion persistence and replay, demo documents, twelve phone/desktop route layouts, matching translation keys, and Tagalog/large text at 320px without horizontal overflow. Screenshots and measurements are in `docs/ui-concepts/implemented/`; current checklist and limitations are in [FINISHING-PASS.md](docs/FINISHING-PASS.md). Physical Android notifications/location and a full assistive-technology audit remain unverified.
+
+Local development is isolated from production: Docker `dokyu-ui-audit-db`, PostgreSQL on 127.0.0.1:5434, API on 4000, Expo web on 8082. Credentials are only in ignored environment files. Production builds use `EXPO_PUBLIC_API_URL=same-origin`; never publish a bundle pointing to localhost. Release publication and live verification are tracked in the finishing checklist.
+
 Read this first, then `docs/PLAN.md` (the full plan) and `docs/CONTENT.md` (verified research).
 
 ## Who and what

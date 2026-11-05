@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
+import { useCallback, type ReactNode } from 'react';
 import { Pressable, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, usePathname, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { colors, shadow } from '@dokyu/shared';
 import { Screen } from './ui/Screen';
@@ -11,6 +11,9 @@ import { Icon } from './ui/Icon';
 import { useLayout } from '../lib/useLayout';
 import { ACCOUNTS_ENABLED } from '../lib/api';
 import { Button } from './ui/Button';
+import { TextLink } from './ui/TextLink';
+import { authTour, useTour, useTourTarget } from '../lib/tour';
+import { useSettings } from '../lib/settings';
 
 /** Layout for sign-in and related pages: full width on phones, a centred card on desktop. */
 export function AuthScreen({
@@ -25,8 +28,33 @@ export function AuthScreen({
   const { isDesktop } = useLayout();
   const router = useRouter();
   const { t } = useTranslation();
+  const pathname = usePathname();
+  const kind = pathname.endsWith('/sign-up')
+    ? 'sign-up'
+    : pathname.endsWith('/sign-in')
+      ? 'sign-in'
+      : 'recovery';
+  const { authToursSeen, ready, update } = useSettings();
+  const { start, stop } = useTour();
+  const formRef = useTourTarget('auth.form.' + kind);
+  const seen = authToursSeen.includes(kind);
+  const replay = useCallback(() => {
+    start(authTour(kind, !ACCOUNTS_ENABLED), () =>
+      update({ authToursSeen: [...new Set([...authToursSeen, kind])] }),
+    );
+  }, [start, kind, authToursSeen, update]);
+  useFocusEffect(
+    useCallback(() => {
+      if (!ready || seen) return;
+      const timer = setTimeout(replay, 800);
+      return () => {
+        clearTimeout(timer);
+        stop();
+      };
+    }, [ready, seen, replay, stop]),
+  );
   return (
-    <Screen className="gap-6">
+    <Screen className="gap-6" tourScroll canvas>
       <View className="flex-row items-center justify-between">
         <Pressable
           accessibilityRole="link"
@@ -47,7 +75,7 @@ export function AuthScreen({
         }
         style={isDesktop ? { maxWidth: 480, boxShadow: shadow.raised } : undefined}
       >
-        <View className="gap-1">
+        <View ref={formRef} collapsable={false} className="gap-1">
           <AppText variant="h1">{title}</AppText>
           {intro ? (
             <AppText variant="body" tone="muted">
@@ -69,6 +97,7 @@ export function AuthScreen({
           </View>
         )}
       </View>
+      <TextLink onPress={replay}>{t('tour.authReplay')}</TextLink>
       <Disclaimer />
     </Screen>
   );

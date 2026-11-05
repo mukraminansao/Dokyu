@@ -4,7 +4,7 @@
  */
 export const colors = {
   primary: '#2042C4',
-  primaryDark: '#13287A',
+  primaryDark: '#090B3B',
   primarySoft: '#ECF0FF',
   primaryTint: '#D5DEFF',
   gold: '#E0A800',
@@ -16,12 +16,16 @@ export const colors = {
   successSoft: '#DCFCE7',
   warning: '#B45309',
   danger: '#B91C1C',
-  text: '#172033',
-  textMuted: '#5B6478',
+  text: '#090B35',
+  textMuted: '#343952',
   textSubtle: '#8A93A8',
-  border: '#E6EAF4',
+  border: '#D5DFF3',
   surface: '#FFFFFF',
   surfaceAlt: '#F4F6FC',
+  refinedBorder: '#D5DFF3',
+  refinedCanvas: '#FAFCFF',
+  heroTop: '#EAF2FF',
+  heroBottom: '#D9E8FF',
   scrim: 'rgba(10, 18, 44, 0.66)',
 } as const;
 
@@ -39,7 +43,17 @@ export type StatusTone = keyof typeof statusColors;
 export const font = {
   family: 'Poppins',
   weights: { regular: '400', medium: '500', semibold: '600', bold: '700' },
-  size: { caption: 11, small: 12, body: 14, bodyLg: 16, title: 17, h2: 20, h1: 24, display: 88 },
+  size: {
+    caption: 11,
+    small: 12,
+    body: 14,
+    bodyLg: 16,
+    title: 17,
+    h2: 20,
+    h1: 24,
+    hero: 36,
+    display: 88,
+  },
   /** Large-text mode for seniors (plan §3.1 H.3): body text is 20px, everything else scales with it. */
   sizeLarge: {
     caption: 15,
@@ -49,6 +63,7 @@ export const font = {
     title: 23,
     h2: 26,
     h1: 30,
+    hero: 38,
     display: 96,
   },
   largeTextBody: 20,
@@ -58,7 +73,7 @@ export type TextVariant = keyof typeof font.size;
 
 export const radius = { sm: 8, md: 12, lg: 14, tile: 18, card: 20, sheet: 26, pill: 999 } as const;
 export const space = { 1: 4, 2: 8, 3: 12, 4: 16, 5: 20, 6: 24, 8: 32 } as const;
-export const size = { tile: 60, touchMin: 44, button: 52, tabBar: 84, dokiButton: 66 } as const;
+export const size = { tile: 60, touchMin: 44, button: 52, tabBar: 84, dokiButton: 72 } as const;
 export const motion = { fast: 150, normal: 200, slow: 250 } as const;
 export const shadow = {
   card: '0 2px 10px rgba(15, 23, 42, 0.04)',

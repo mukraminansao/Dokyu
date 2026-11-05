@@ -1,0 +1,469 @@
+[
+  {
+    "mode": "desktop-en",
+    "errors": [],
+    "metrics": {
+      "viewport": 1440,
+      "documentWidth": 1440,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 16,
+          "y": 90,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Guides",
+          "x": 16,
+          "y": 142,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Ask Doki",
+          "x": 16,
+          "y": 202,
+          "width": 223,
+          "height": 60
+        },
+        {
+          "label": "My Docs",
+          "x": 16,
+          "y": 274,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Account",
+          "x": 16,
+          "y": 326,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Design system",
+          "x": 16,
+          "y": 934,
+          "width": 223,
+          "height": 48
+        }
+      ]
+    }
+  },
+  {
+    "mode": "phone-en",
+    "errors": [],
+    "metrics": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 4,
+          "y": 782,
+          "width": 77.5,
+          "height": 52
+        },
+        {
+          "label": "Guides",
+          "x": 81.5,
+          "y": 782,
+          "width": 77.5,
+          "height": 52
+        },
+        {
+          "label": "Ask Doki",
+          "x": 159,
+          "y": 742,
+          "width": 72,
+          "height": 92
+        },
+        {
+          "label": "My Docs",
+          "x": 231,
+          "y": 782,
+          "width": 77.5,
+          "height": 52
+        },
+        {
+          "label": "Account",
+          "x": 308.5,
+          "y": 782,
+          "width": 77.5,
+          "height": 52
+        }
+      ]
+    }
+  },
+  {
+    "mode": "phone-tl",
+    "errors": [],
+    "metrics": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 4,
+          "y": 782,
+          "width": 77.5,
+          "height": 52
+        },
+        {
+          "label": "Gabay",
+          "x": 81.5,
+          "y": 782,
+          "width": 77.5,
+          "height": 52
+        },
+        {
+          "label": "Itanong",
+          "x": 159,
+          "y": 742,
+          "width": 72,
+          "height": 92
+        },
+        {
+          "label": "My Docs",
+          "x": 231,
+          "y": 782,
+          "width": 77.5,
+          "height": 52
+        },
+        {
+          "label": "Account",
+          "x": 308.5,
+          "y": 782,
+          "width": 77.5,
+          "height": 52
+        }
+      ]
+    }
+  },
+  {
+    "mode": "phone-large",
+    "errors": [],
+    "metrics": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 4,
+          "y": 766,
+          "width": 77.5,
+          "height": 68
+        },
+        {
+          "label": "Gabay",
+          "x": 81.5,
+          "y": 766,
+          "width": 77.5,
+          "height": 68
+        },
+        {
+          "label": "Itanong",
+          "x": 159,
+          "y": 736,
+          "width": 72,
+          "height": 98
+        },
+        {
+          "label": "My Docs",
+          "x": 231,
+          "y": 766,
+          "width": 77.5,
+          "height": 68
+        },
+        {
+          "label": "Account",
+          "x": 308.5,
+          "y": 766,
+          "width": 77.5,
+          "height": 68
+        }
+      ]
+    }
+  },
+  {
+    "mode": "small-phone",
+    "errors": [],
+    "metrics": {
+      "viewport": 320,
+      "documentWidth": 320,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 4,
+          "y": 678,
+          "width": 60,
+          "height": 52
+        },
+        {
+          "label": "Guides",
+          "x": 64,
+          "y": 678,
+          "width": 60,
+          "height": 52
+        },
+        {
+          "label": "Ask Doki",
+          "x": 124,
+          "y": 638,
+          "width": 72,
+          "height": 92
+        },
+        {
+          "label": "My Docs",
+          "x": 196,
+          "y": 678,
+          "width": 60,
+          "height": 52
+        },
+        {
+          "label": "Account",
+          "x": 256,
+          "y": 678,
+          "width": 60,
+          "height": 52
+        }
+      ]
+    }
+  },
+  {
+    "mode": "tablet",
+    "errors": [],
+    "metrics": {
+      "viewport": 768,
+      "documentWidth": 768,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 4,
+          "y": 962,
+          "width": 172,
+          "height": 52
+        },
+        {
+          "label": "Guides",
+          "x": 176,
+          "y": 962,
+          "width": 172,
+          "height": 52
+        },
+        {
+          "label": "Ask Doki",
+          "x": 348,
+          "y": 922,
+          "width": 72,
+          "height": 92
+        },
+        {
+          "label": "My Docs",
+          "x": 420,
+          "y": 962,
+          "width": 172,
+          "height": 52
+        },
+        {
+          "label": "Account",
+          "x": 592,
+          "y": 962,
+          "width": 172,
+          "height": 52
+        }
+      ]
+    }
+  },
+  {
+    "mode": "compact-desktop",
+    "errors": [],
+    "metrics": {
+      "viewport": 1024,
+      "documentWidth": 1024,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 16,
+          "y": 90,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Guides",
+          "x": 16,
+          "y": 142,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Ask Doki",
+          "x": 16,
+          "y": 202,
+          "width": 223,
+          "height": 60
+        },
+        {
+          "label": "My Docs",
+          "x": 16,
+          "y": 274,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Account",
+          "x": 16,
+          "y": 326,
+          "width": 223,
+          "height": 48
+        }
+      ]
+    }
+  },
+  {
+    "mode": "desktop-tl-large",
+    "errors": [],
+    "metrics": {
+      "viewport": 1440,
+      "documentWidth": 1440,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 16,
+          "y": 90,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Gabay",
+          "x": 16,
+          "y": 142,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Itanong",
+          "x": 16,
+          "y": 202,
+          "width": 223,
+          "height": 60
+        },
+        {
+          "label": "My Docs",
+          "x": 16,
+          "y": 274,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Account",
+          "x": 16,
+          "y": 326,
+          "width": 223,
+          "height": 48
+        }
+      ]
+    }
+  },
+  {
+    "mode": "phone-en-large",
+    "errors": [],
+    "metrics": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 4,
+          "y": 766,
+          "width": 77.5,
+          "height": 68
+        },
+        {
+          "label": "Guides",
+          "x": 81.5,
+          "y": 766,
+          "width": 77.5,
+          "height": 68
+        },
+        {
+          "label": "Ask Doki",
+          "x": 159,
+          "y": 736,
+          "width": 72,
+          "height": 98
+        },
+        {
+          "label": "My Docs",
+          "x": 231,
+          "y": 766,
+          "width": 77.5,
+          "height": 68
+        },
+        {
+          "label": "Account",
+          "x": 308.5,
+          "y": 766,
+          "width": 77.5,
+          "height": 68
+        }
+      ]
+    }
+  },
+  {
+    "mode": "sidebar-breakpoint",
+    "errors": [],
+    "metrics": {
+      "viewport": 900,
+      "documentWidth": 900,
+      "overflow": [],
+      "tabs": [
+        {
+          "label": "Home",
+          "x": 16,
+          "y": 90,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Guides",
+          "x": 16,
+          "y": 142,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Ask Doki",
+          "x": 16,
+          "y": 202,
+          "width": 223,
+          "height": 60
+        },
+        {
+          "label": "My Docs",
+          "x": 16,
+          "y": 274,
+          "width": 223,
+          "height": 48
+        },
+        {
+          "label": "Account",
+          "x": 16,
+          "y": 326,
+          "width": 223,
+          "height": 48
+        }
+      ]
+    }
+  }
+]

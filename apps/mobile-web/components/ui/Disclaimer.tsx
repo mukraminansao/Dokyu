@@ -5,7 +5,7 @@ import { AppText } from './AppText';
 export function Disclaimer({ align = 'center' }: { align?: 'center' | 'left' }) {
   const { t } = useTranslation();
   return (
-    <AppText variant="caption" tone="subtle" style={{ textAlign: align }}>
+    <AppText variant="caption" tone="muted" style={{ textAlign: align }}>
       {t('common.disclaimer')}
     </AppText>
   );

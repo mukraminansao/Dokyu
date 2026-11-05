@@ -71,10 +71,21 @@ export function ListRow({
 export function InfoLinks({ onReplayTour }: { onReplayTour?: () => void }) {
   const { t } = useTranslation();
   const router = useRouter();
+  const settings = useSettings();
   return (
     <View className="gap-2">
       <AppText variant="title">{t('about.section')}</AppText>
       <Card style={{ padding: 0, overflow: 'hidden' }}>
+        <ListRow
+          first
+          icon="help"
+          label={t('tour.restartAll')}
+          hint={t('tour.restartHint')}
+          onPress={() => {
+            settings.update({ authToursSeen: [], homeTourVersion: 0, tourSeen: false });
+            router.push('/welcome');
+          }}
+        />
         {onReplayTour ? (
           <ListRow
             first

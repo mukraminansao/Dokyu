@@ -3,7 +3,7 @@
  * and Doki walks over, points at it and explains it in a speech bubble. Skip is always there.
  * With reduce motion everything still works, it just appears in place instead of moving.
  */
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ElementRef } from 'react';
 import { Animated, Easing, Platform, Pressable, View, useWindowDimensions } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { colors } from '@dokyu/shared';
@@ -13,7 +13,6 @@ import { DokiBubble } from './DokiBubble';
 import { Confetti } from './Confetti';
 import { useReducedMotion } from '../../lib/motion';
 import { useTour, type Rect } from '../../lib/tour';
-import { useSettings } from '../../lib/settings';
 import { useLayout } from '../../lib/useLayout';
 
 const native = Platform.OS !== 'web';
@@ -37,7 +36,7 @@ const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v
 function place(rect: Rect | null, W: number, H: number, D: number, stepPose: DokiPose): Placement {
   const Dh = D * 1.2;
   const full = Math.min(340, W - 32);
-  if (!rect) {
+  if (!rect || rect.height > H * 0.45 || rect.y < 0 || rect.y + rect.height > H - 8) {
     const doki = { x: W / 2 - D / 2, y: H * 0.24 };
     return {
       hole: { x: W / 2, y: H * 0.3, width: 0, height: 0 },
@@ -129,7 +128,6 @@ function place(rect: Rect | null, W: number, H: number, D: number, stepPose: Dok
 export function TourOverlay() {
   const { t } = useTranslation();
   const tour = useTour();
-  const { update } = useSettings();
   const { isDesktop } = useLayout();
   const reduced = useReducedMotion();
   const { width: W, height: H } = useWindowDimensions();
@@ -159,6 +157,10 @@ export function TourOverlay() {
   const pulse = useRef(new Animated.Value(0)).current;
   const pos = useRef({ x: -120, y: H * 0.24 });
   const first = useRef(true);
+  const nextButton = useRef<ElementRef<typeof Pressable>>(null);
+  useEffect(() => {
+    if (steps && talking) nextButton.current?.focus();
+  }, [steps, talking, index]);
 
   // Open / close.
   useEffect(() => {
@@ -295,18 +297,17 @@ export function TourOverlay() {
   const onTyping = useCallback((v: boolean) => setTyping(v), []);
 
   const finish = useCallback(() => {
-    update({ tourSeen: true });
     Animated.timing(fade, {
       toValue: 0,
       duration: reduced ? 0 : 220,
       useNativeDriver: native,
     }).start(() => {
-      tour.stop();
+      tour.complete();
       setPlacement(null);
       setTalking(false);
       ringOpacity.setValue(0);
     });
-  }, [update, fade, reduced, tour, ringOpacity]);
+  }, [fade, reduced, tour, ringOpacity]);
 
   if (!steps) return null;
   const step = steps[index];
@@ -336,6 +337,7 @@ export function TourOverlay() {
           </Pressable>
         ) : null}
         <Pressable
+          ref={nextButton}
           accessibilityRole="button"
           onPress={() => (last ? finish() : setIndex((i) => i + 1))}
           className="min-h-[40px] justify-center bg-primary px-5 active:opacity-90"
@@ -351,7 +353,41 @@ export function TourOverlay() {
 
   return (
     <Animated.View
+      role="dialog"
+      aria-modal={true}
+      accessibilityLabel={t('tour.dokiLabel')}
       accessibilityViewIsModal
+      {...(Platform.OS === 'web'
+        ? {
+            onKeyDown: (nativeEvent: unknown) => {
+              const event = nativeEvent as {
+                key: string;
+                shiftKey: boolean;
+                preventDefault: () => void;
+                currentTarget: HTMLElement;
+              };
+              if (event.key === 'Escape') {
+                event.preventDefault();
+                finish();
+              }
+              if (event.key !== 'Tab') return;
+              const buttons = Array.from(
+                event.currentTarget.querySelectorAll<HTMLElement>(
+                  '[role="button"],button,[tabindex="0"]',
+                ),
+              );
+              const first = buttons[0];
+              const last = buttons[buttons.length - 1];
+              if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last?.focus();
+              } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first?.focus();
+              }
+            },
+          }
+        : {})}
       style={{
         position: 'absolute',
         left: 0,

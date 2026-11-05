@@ -16,7 +16,8 @@
     "from": "mula {{amount}}",
     "cancel": "Kanselahin",
     "clear": "Burahin",
-    "notSet": "Wala pa"
+    "notSet": "Wala pa",
+    "offline": "Offline ka. Gumagana pa rin ang mga naka-save na gabay at checklist. Kailangan ng internet para sa sign-in, mapa at pag-sync."
   },
   "home": {
     "welcome": "Maligayang pagdating sa Dokyu",
@@ -32,14 +33,14 @@
     "whatToDo": "Ano ang gusto mong gawin?",
     "forYou": "Para sa iyo ngayon",
     "continueLabel": "ITULOY ANG PAGHAHANDA",
-    "continueText": "{{done}} sa {{total}} handa na",
-    "continueCta": "Buksan ang checklist →",
+    "continueText": "Checklist: {{done}} sa {{total}} handa na",
+    "continueCta": "Tingnan ang checklist",
     "goalLabel": "LAYUNIN MO: {{goal}}",
-    "goalCta": "Magsimula sa {{title}} →",
-    "pickLabel": "HINDI ALAM KUNG SAAN MAGSISIMULA?",
-    "pickTitle": "Sabihin kay Doki ang layunin mo",
-    "pickText": "Unang trabaho, pasaporte, scholarship… ipapakita namin kung ano ang uunahin.",
-    "pickCta": "Pumili ng layunin →",
+    "goalCta": "Tingnan ang plano ko",
+    "pickLabel": "Maghanda na tayo",
+    "pickTitle": "Ang susunod mong hakbang",
+    "pickText": "Pumili ng layunin para malaman ang uunahin.",
+    "pickCta": "Pumili ng layunin",
     "soon": "Malapit na",
     "steps": "{{n}} hakbang",
     "comingSoon": "Malapit na sa Dokyu",
@@ -48,7 +49,15 @@
     "search": "Hanapin: NBI, passport, birth certificate…",
     "findDoc": "Maghanap ng dokumento",
     "allGuides": "Lahat ng gabay",
-    "planVisit": "Ihanda ang lakad"
+    "planVisit": "Ihanda ang lakad",
+    "findOffice": "Maghanap ng opisina",
+    "checkHolidays": "Tingnan ang mga holiday",
+    "heroTitle": "Mas madali ang susunod mong lakad.",
+    "heroBody": "Ihanda ang mga dokumento mo gamit ang mga gabay, checklist, at lokasyon ng opisina — nasa iisang lugar.",
+    "changeArea": "Baguhin ang lugar mo",
+    "checklistProgress": "Progreso ng checklist",
+    "visitTipTitle": "Paalala",
+    "visitTipBody": "Tingnan ang checklist at kumpirmahin ang oras ng opisina bago pumunta."
   },
   "guides": {
     "title": "Mga Gabay",
@@ -284,7 +293,17 @@
     "finish": "Tara na!",
     "dokiLabel": "Si Doki, ang gabay mo",
     "replay": "Ipakita ulit ang app",
-    "replayHint": "Mabilis na tour ni Doki"
+    "replayHint": "Mabilis na tour ni Doki",
+    "authHello": "Hi, ako si Doki. Ipapakita ko kung paano magsimula sa account mo.",
+    "authSignin": "Ilagay ang email at password, tapos piliin ang Sign in. Gamitin ang Forgot password kung kailangan ng reset link. Bago ka rito? Piliin ang Create account.",
+    "authSignup": "Ilagay ang pangalan, email at matibay na password. Basahin ang privacy notice bago pumayag. Maaaring kailangan mong kumpirmahin ang email mo.",
+    "authRecovery": "Ilagay ang email ng account at sundin ang mga hakbang sa pag-reset. Huwag ibahagi ang password o verification link mo.",
+    "authPrivacy": "Sine-save ng account ang My Docs at mga preference mo. Hindi kailangan ng Dokyu ang password mo sa mga website ng gobyerno.",
+    "authGuest": "Puwede ring magpatuloy bilang guest para gamitin ang mga gabay, checklist, opisina at Doki. Susunod ang tour sa Home.",
+    "authPreview": "Naka-off ang mga account sa preview na ito kaya walang sign-in form. Puwede mo pa ring gamitin ang app bilang guest. May konektadong account service ang published app.",
+    "authReplay": "Ipakita ang gabay sa account",
+    "restartAll": "Ulitin ang lahat ng gabay ni Doki",
+    "restartHint": "Panoorin ang intro at ipakita ulit ang gabay sa account at Home."
   },
   "days": {
     "0": "Linggo",

@@ -9,6 +9,10 @@
 
 ## 0. How to use this file
 
+**Approved finishing pass (5 November 2026):** apply the agreed design consistently, prepare transparent Doki artwork, restore separate authentication and versioned Home walkthroughs with replay, verify accounts against an isolated local API/database, and prepare the approved release. Checklist: [FINISHING-PASS.md](FINISHING-PASS.md).
+
+**Approved UI refinement (5 November 2026):** evolve Bayan Blue using `ui-concepts/01-bayan-blue-refined-doki-nav.png`, including the emphasized raised central Doki tab. Scope and acceptance criteria: [UI-REFINEMENT-PLAN.md](UI-REFINEMENT-PLAN.md). Preserve the existing feature behavior, accessibility, bilingual UI and code-native mascot.
+
 - This is the single source of truth for Dokyu. If a feature is not in this file, it is not part of the build yet.
 - To continue in a new chat, send this file and say which phase you're on (see §12).
 - When a decision changes, update this file first, then the code.

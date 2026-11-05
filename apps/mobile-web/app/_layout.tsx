@@ -1,7 +1,7 @@
 import '../global.css';
 import '../lib/i18n';
 import { useEffect } from 'react';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
@@ -18,6 +18,8 @@ import { AuthProvider } from '../lib/auth';
 import { MyDocsProvider } from '../lib/mydocs';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '../lib/queryClient';
+import { TourProvider, useTour } from '../lib/tour';
+import { TourOverlay } from '../components/doki/TourOverlay';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -48,10 +50,25 @@ function Root() {
 
   if (!loaded) return null;
   return (
-    <>
+    <TourProvider>
       <StatusBar style="dark" />
+      <RoutedScreens />
+      <TourOverlay />
+    </TourProvider>
+  );
+}
+
+function RoutedScreens() {
+  const { steps } = useTour();
+  return (
+    <View
+      style={{ flex: 1 }}
+      aria-hidden={!!steps}
+      accessibilityElementsHidden={!!steps}
+      importantForAccessibility={steps ? 'no-hide-descendants' : 'auto'}
+    >
       <Stack screenOptions={{ headerShown: false }} />
-    </>
+    </View>
   );
 }
 

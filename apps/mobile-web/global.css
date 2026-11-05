@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media (max-width: 899px) {
+  * {
+    scrollbar-width: none;
+  }
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Keep keyboard focus visible on the light canvas and the raised Doki control. */
+@layer base {
+  :focus-visible {
+    outline: 3px solid #8a6400;
+    outline-offset: 3px;
+  }
+}

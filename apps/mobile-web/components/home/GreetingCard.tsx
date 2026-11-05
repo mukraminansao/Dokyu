@@ -1,21 +1,15 @@
 import { Pressable, View } from 'react-native';
-import Svg, { Ellipse, Path, Rect } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { colors } from '@dokyu/shared';
-import { AppText } from '../ui/AppText';
-import { Doki } from '../ui/Doki';
+import { colors, manilaTime } from '@dokyu/shared';
+import { HomeText as AppText } from './HomeText';
+import { ReferenceDoki } from '../ui/ReferenceDoki';
 import { Icon } from '../ui/Icon';
-import { Float, usePoseCycle } from '../../lib/motion';
-import type { DokiPose } from '../ui/Doki';
-
-const GREETING_POSES: Array<{ pose: DokiPose; ms: number }> = [
-  { pose: 'wave', ms: 1800 },
-  { pose: 'idle', ms: 5200 },
-  { pose: 'happy', ms: 1200 },
-  { pose: 'idle', ms: 6000 },
-];
+import { Float } from '../../lib/motion';
 import { useSettings } from '../../lib/settings';
+import { useLayout } from '../../lib/useLayout';
+import { useNow } from '../../lib/offices';
+import { GradientFill } from '../ui/GradientFill';
 
 function timeGreeting(hour: number) {
   if (hour < 12) return 'home.morning';
@@ -23,66 +17,107 @@ function timeGreeting(hour: number) {
   return 'home.evening';
 }
 
-/** Greeting with the user's area and Doki holding a paper (Bayan Blue prototype, Home). */
+/** Personalized header and the approved Bayan Blue welcome banner. */
 export function GreetingCard({ name }: { name?: string }) {
   const { t } = useTranslation();
   const router = useRouter();
-  const { municipality, province } = useSettings();
+  const { municipality, province, largeText } = useSettings();
+  const { width, isDesktop } = useLayout();
   const area = [municipality, province].filter(Boolean).join(', ');
-  const pose = usePoseCycle(GREETING_POSES);
+  const now = useNow();
+  const compact = width < 600;
+  const stacked = largeText || width < 360;
 
   return (
-    <View
-      className="flex-row items-center overflow-hidden rounded-[22px] bg-primary-soft"
-      style={{ minHeight: 132 }}
-    >
-      <View className="flex-1 gap-0.5 py-4 pl-5">
-        <AppText variant="small" tone="muted">
-          {t(timeGreeting(new Date().getHours()))}
-        </AppText>
-        <AppText variant="h2" weight="bold" tone="primaryDark" numberOfLines={1}>
-          {name ?? t('home.friend')}
-        </AppText>
-        <Pressable
-          accessibilityRole="button"
-          onPress={() => router.push('/setup')}
-          className="mt-2 flex-row items-center gap-1.5 self-start rounded-full bg-surface px-3 active:opacity-80"
-          style={{ minHeight: 40 }}
-        >
-          <Icon name="pin" size={13} color={colors.primary} strokeWidth={2.2} />
-          <AppText variant="caption" weight="medium" tone="primary">
-            {area || t('home.setArea')}
+    <View className="gap-4">
+      <View className="flex-row items-start justify-between gap-3">
+        <View style={{ flex: 1 }}>
+          <AppText
+            variant={isDesktop ? 'hero' : 'h1'}
+            weight="bold"
+            tone="primaryDark"
+            style={{
+              fontSize: largeText ? 32 : isDesktop ? 28 : 24,
+              lineHeight: largeText ? 42 : 34,
+            }}
+          >
+            {t(timeGreeting(Math.floor(manilaTime(now).minutes / 60)))} {name ?? t('home.friend')}
           </AppText>
-        </Pressable>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={t('home.changeArea') + ': ' + (area || t('home.setArea'))}
+            onPress={() => router.push('/setup')}
+            className="min-h-[44px] flex-row items-center gap-2 self-start py-1"
+            style={{ maxWidth: '100%' }}
+          >
+            <Icon name="pin" size={16} color={colors.primary} />
+            <AppText variant="body" weight="medium" tone="primaryDark" style={{ flexShrink: 1 }}>
+              {municipality || province || t('home.setArea')}
+            </AppText>
+            <View style={{ transform: [{ rotate: '90deg' }] }}>
+              <Icon name="chevronRight" size={14} color={colors.primaryDark} />
+            </View>
+          </Pressable>
+        </View>
+        {isDesktop ? (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={t('nav.account')}
+            onPress={() => router.push('/account')}
+            className="min-h-[44px] flex-row items-center gap-2 rounded-full bg-primary-soft px-3"
+          >
+            <Icon name="account" size={20} color={colors.primaryDark} />
+            {name ? (
+              <AppText variant="body" weight="medium">
+                {name}
+              </AppText>
+            ) : null}
+          </Pressable>
+        ) : null}
       </View>
-      <View style={{ width: 150, height: 132 }} aria-hidden>
-        <Svg width={150} height={132} viewBox="0 0 150 132" style={{ position: 'absolute' }}>
-          <Ellipse cx={40} cy={26} rx={20} ry={7} fill="#FFFFFF" />
-          <Ellipse cx={128} cy={16} rx={16} ry={6} fill="#FFFFFF" />
-          <Path d="M0 132c22-20 56-26 88-16s46 2 62-4v20z" fill={colors.primaryTint} />
-          <Rect
-            x={104}
-            y={44}
-            width={28}
-            height={36}
-            rx={4}
-            fill="#FFFFFF"
-            stroke={colors.primary}
-            strokeWidth={2}
-            transform="rotate(10 118 62)"
-          />
-          <Path
-            d="M110 54h16M110 61h16M110 68h10"
-            stroke="#AFC0FF"
-            strokeWidth={2}
-            strokeLinecap="round"
-            transform="rotate(10 118 62)"
-          />
-        </Svg>
-        <View style={{ position: 'absolute', left: 14, top: 22 }}>
-          <Float>
-            <Doki size={86} pose={pose} label="Doki" />
-          </Float>
+      <View
+        className="overflow-hidden rounded-card bg-primary-soft"
+        style={{
+          padding: compact ? 16 : 24,
+          flexDirection: stacked ? 'column' : 'row',
+          gap: 12,
+          alignItems: 'center',
+        }}
+      >
+        <GradientFill from={colors.heroTop} to={colors.heroBottom} />
+        <View style={{ flex: stacked ? undefined : 1, alignSelf: 'stretch' }} className="gap-2">
+          <AppText
+            variant={compact ? 'h1' : 'hero'}
+            weight="bold"
+            tone="primary"
+            style={{
+              fontSize: largeText ? 32 : compact ? 24 : 36,
+              lineHeight: largeText ? 44 : compact ? 28 : 43,
+              letterSpacing: -0.8,
+            }}
+          >
+            {t('home.heroTitle')}
+          </AppText>
+          {!compact || largeText ? (
+            <AppText variant="bodyLg" tone="primaryDark">
+              {t('home.heroBody')}
+            </AppText>
+          ) : null}
+        </View>
+        <View
+          aria-hidden
+          pointerEvents="none"
+          style={{
+            alignSelf: stacked ? 'flex-end' : 'center',
+            width: compact ? 92 : 180,
+            height: compact ? 54 : 100,
+          }}
+        >
+          <View style={{ position: 'absolute', top: compact ? -5 : -12, left: 0 }}>
+            <Float amount={3}>
+              <ReferenceDoki size={compact ? 100 : 180} />
+            </Float>
+          </View>
         </View>
       </View>
     </View>

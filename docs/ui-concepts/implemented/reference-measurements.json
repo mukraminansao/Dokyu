@@ -1,0 +1,150 @@
+[
+  {
+    "documentWidth": 1104,
+    "headings": [
+      {
+        "color": "rgb(9, 11, 59)",
+        "size": "28px",
+        "text": "Good evening, friend"
+      },
+      {
+        "color": "rgb(32, 66, 196)",
+        "size": "36px",
+        "text": "Your next trip, made simpler."
+      },
+      {
+        "color": "rgb(255, 255, 255)",
+        "size": "36px",
+        "text": "NBI Clearance"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "24px",
+        "text": "Popular guides"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "24px",
+        "text": "Plan your visit"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "24px",
+        "text": "Before you go"
+      }
+    ],
+    "height": 910,
+    "width": 1104
+  },
+  {
+    "documentWidth": 390,
+    "headings": [
+      {
+        "color": "rgb(9, 11, 59)",
+        "size": "24px",
+        "text": "Good evening, friend"
+      },
+      {
+        "color": "rgb(32, 66, 196)",
+        "size": "24px",
+        "text": "Your next trip, made simpler."
+      },
+      {
+        "color": "rgb(255, 255, 255)",
+        "size": "26px",
+        "text": "NBI Clearance"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "22px",
+        "text": "Popular guides"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "22px",
+        "text": "Plan your visit"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "24px",
+        "text": "Before you go"
+      }
+    ],
+    "height": 900,
+    "width": 390
+  },
+  {
+    "documentWidth": 320,
+    "headings": [
+      {
+        "color": "rgb(9, 11, 59)",
+        "size": "24px",
+        "text": "Good evening, friend"
+      },
+      {
+        "color": "rgb(32, 66, 196)",
+        "size": "24px",
+        "text": "Your next trip, made simpler."
+      },
+      {
+        "color": "rgb(255, 255, 255)",
+        "size": "26px",
+        "text": "NBI Clearance"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "22px",
+        "text": "Popular guides"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "22px",
+        "text": "Plan your visit"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "24px",
+        "text": "Before you go"
+      }
+    ],
+    "height": 740,
+    "width": 320
+  },
+  {
+    "documentWidth": 900,
+    "headings": [
+      {
+        "color": "rgb(9, 11, 59)",
+        "size": "28px",
+        "text": "Good evening, friend"
+      },
+      {
+        "color": "rgb(32, 66, 196)",
+        "size": "36px",
+        "text": "Your next trip, made simpler."
+      },
+      {
+        "color": "rgb(255, 255, 255)",
+        "size": "36px",
+        "text": "NBI Clearance"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "24px",
+        "text": "Popular guides"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "24px",
+        "text": "Plan your visit"
+      },
+      {
+        "color": "rgb(9, 11, 53)",
+        "size": "24px",
+        "text": "Before you go"
+      }
+    ],
+    "height": 900,
+    "width": 900
+  }
+]

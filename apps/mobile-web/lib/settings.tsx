@@ -29,6 +29,8 @@ export interface Settings {
   goals: GoalSlug[];
   /** Doki's Home tour was finished or skipped. */
   tourSeen: boolean;
+  homeTourVersion: number;
+  authToursSeen: string[];
 }
 
 interface SettingsContextValue extends Settings {
@@ -57,6 +59,10 @@ function readSaved(raw: string | null, fallback: Settings): Settings {
     largeText: typeof s.largeText === 'boolean' ? s.largeText : fallback.largeText,
     introSeen: s.introSeen === true,
     tourSeen: s.tourSeen === true,
+    homeTourVersion: typeof s.homeTourVersion === 'number' ? s.homeTourVersion : 0,
+    authToursSeen: Array.isArray(s.authToursSeen)
+      ? s.authToursSeen.filter((v): v is string => typeof v === 'string')
+      : [],
     setupDone: s.setupDone === true,
     province: typeof s.province === 'string' ? s.province : null,
     municipality: typeof s.municipality === 'string' ? s.municipality : null,
@@ -76,6 +82,8 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     municipality: null,
     goals: [],
     tourSeen: false,
+    homeTourVersion: 0,
+    authToursSeen: [],
   });
   const [ready, setReady] = useState(false);
 

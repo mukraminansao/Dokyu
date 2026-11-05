@@ -4,6 +4,11 @@ import { colors } from '@dokyu/shared';
 
 /** Simple line icons drawn for Dokyu (24px grid, 1.8 stroke). */
 const PATHS = {
+  chat: 'M21 11a9 8 0 0 1-9 8 10 10 0 0 1-4-.8L3 21l1.7-5A8 8 0 0 1 3 11a9 8 0 0 1 18 0z',
+  identity: 'M3 5h18v14H3zM7.5 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM5 16c0-2.5 5-2.5 5 0M14 9h4M14 13h4',
+  document: 'M5 3h9l5 5v13H5zM14 3v6h5M8 13h8M8 17h6',
+  documentPerson: 'M5 3h9l5 5v13H5zM14 3v6h5M10 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM7 19c0-3 6-3 6 0',
+  arrowRight: 'M4 12h16M14 6l6 6-6 6',
   home: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
   guides: 'M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2zM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z',
   docs: 'M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9L9.4 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z',

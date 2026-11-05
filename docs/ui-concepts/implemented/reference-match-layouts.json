@@ -1,0 +1,329 @@
+[
+  {
+    "documentWidth": 390,
+    "height": 844,
+    "mode": "Tagalog, large text",
+    "tabs": [
+      {
+        "height": 68,
+        "label": "Home",
+        "width": 77.5,
+        "x": 4,
+        "y": 766
+      },
+      {
+        "height": 68,
+        "label": "Gabay",
+        "width": 77.5,
+        "x": 81.5,
+        "y": 766
+      },
+      {
+        "height": 98,
+        "label": "Itanong",
+        "width": 72,
+        "x": 159,
+        "y": 736
+      },
+      {
+        "height": 68,
+        "label": "My Docs",
+        "width": 77.5,
+        "x": 231,
+        "y": 766
+      },
+      {
+        "height": 68,
+        "label": "Account",
+        "width": 77.5,
+        "x": 308.5,
+        "y": 766
+      }
+    ],
+    "width": 390
+  },
+  {
+    "documentWidth": 320,
+    "height": 740,
+    "mode": "Tagalog, large text",
+    "tabs": [
+      {
+        "height": 68,
+        "label": "Home",
+        "width": 60,
+        "x": 4,
+        "y": 662
+      },
+      {
+        "height": 68,
+        "label": "Gabay",
+        "width": 60,
+        "x": 64,
+        "y": 662
+      },
+      {
+        "height": 98,
+        "label": "Itanong",
+        "width": 72,
+        "x": 124,
+        "y": 632
+      },
+      {
+        "height": 72,
+        "label": "My Docs",
+        "width": 60,
+        "x": 196,
+        "y": 658
+      },
+      {
+        "height": 68,
+        "label": "Account",
+        "width": 60,
+        "x": 256,
+        "y": 662
+      }
+    ],
+    "width": 320
+  },
+  {
+    "documentWidth": 1440,
+    "height": 1000,
+    "mode": "Tagalog, large text",
+    "tabs": [
+      {
+        "height": 56,
+        "label": "Home",
+        "width": 223.33334350585935,
+        "x": 16,
+        "y": 96
+      },
+      {
+        "height": 56,
+        "label": "Gabay",
+        "width": 223.33334350585935,
+        "x": 16,
+        "y": 156
+      },
+      {
+        "height": 56,
+        "label": "Itanong",
+        "width": 223.33334350585935,
+        "x": 16,
+        "y": 216
+      },
+      {
+        "height": 56,
+        "label": "My Docs",
+        "width": 223.33334350585935,
+        "x": 16,
+        "y": 276
+      },
+      {
+        "height": 56,
+        "label": "Account",
+        "width": 223.33334350585935,
+        "x": 16,
+        "y": 336
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "documentWidth": 390,
+    "height": 844,
+    "mode": "English, normal text",
+    "tabs": [
+      {
+        "height": 52,
+        "label": "Home",
+        "width": 77.5
+      },
+      {
+        "height": 52,
+        "label": "Guides",
+        "width": 77.5
+      },
+      {
+        "height": 92,
+        "label": "Ask Doki",
+        "width": 72
+      },
+      {
+        "height": 52,
+        "label": "My Docs",
+        "width": 77.5
+      },
+      {
+        "height": 52,
+        "label": "Account",
+        "width": 77.5
+      }
+    ],
+    "width": 390
+  },
+  {
+    "documentWidth": 320,
+    "height": 740,
+    "mode": "English, normal text",
+    "tabs": [
+      {
+        "height": 52,
+        "label": "Home",
+        "width": 60
+      },
+      {
+        "height": 52,
+        "label": "Guides",
+        "width": 60
+      },
+      {
+        "height": 92,
+        "label": "Ask Doki",
+        "width": 72
+      },
+      {
+        "height": 52,
+        "label": "My Docs",
+        "width": 60
+      },
+      {
+        "height": 52,
+        "label": "Account",
+        "width": 60
+      }
+    ],
+    "width": 320
+  },
+  {
+    "documentWidth": 768,
+    "height": 1024,
+    "mode": "English, normal text",
+    "tabs": [
+      {
+        "height": 52,
+        "label": "Home",
+        "width": 172
+      },
+      {
+        "height": 52,
+        "label": "Guides",
+        "width": 172
+      },
+      {
+        "height": 92,
+        "label": "Ask Doki",
+        "width": 72
+      },
+      {
+        "height": 52,
+        "label": "My Docs",
+        "width": 172
+      },
+      {
+        "height": 52,
+        "label": "Account",
+        "width": 172
+      }
+    ],
+    "width": 768
+  },
+  {
+    "documentWidth": 900,
+    "height": 900,
+    "mode": "English, normal text",
+    "tabs": [
+      {
+        "height": 56,
+        "label": "Home",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "Guides",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "Ask Doki",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "My Docs",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "Account",
+        "width": 223.33334350585935
+      }
+    ],
+    "width": 900
+  },
+  {
+    "documentWidth": 1024,
+    "height": 900,
+    "mode": "English, normal text",
+    "tabs": [
+      {
+        "height": 56,
+        "label": "Home",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "Guides",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "Ask Doki",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "My Docs",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "Account",
+        "width": 223.33334350585935
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "documentWidth": 1440,
+    "height": 1000,
+    "mode": "English, normal text",
+    "tabs": [
+      {
+        "height": 56,
+        "label": "Home",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "Guides",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "Ask Doki",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "My Docs",
+        "width": 223.33334350585935
+      },
+      {
+        "height": 56,
+        "label": "Account",
+        "width": 223.33334350585935
+      }
+    ],
+    "width": 1440
+  }
+]

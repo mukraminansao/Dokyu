@@ -1,0 +1,46 @@
+{
+  "results": [
+    {
+      "name": "Raised Doki button has a full touch area and opens Ask Doki from its raised top",
+      "status": "passed"
+    },
+    {
+      "name": "All five tabs navigate and expose the selected state",
+      "status": "passed"
+    },
+    {
+      "name": "Home search opens Guides ready for typing",
+      "status": "passed"
+    },
+    {
+      "name": "Each document category opens the correct guide filter",
+      "status": "passed"
+    },
+    {
+      "name": "Checklist continuation uses real state and refreshes progress on Home",
+      "status": "passed"
+    },
+    {
+      "name": "Popular guide rows open the corresponding document",
+      "status": "passed"
+    },
+    {
+      "name": "All visit tools retain their destinations",
+      "status": "passed"
+    },
+    {
+      "name": "Goal recommendation and no-goal state both work without sample checklist data",
+      "status": "passed"
+    },
+    {
+      "name": "First-visit guided tour measures the redesigned targets and finishes",
+      "status": "passed"
+    },
+    {
+      "name": "Keyboard focus and reduced-motion preference remain available",
+      "status": "passed"
+    }
+  ],
+  "pageErrors": [],
+  "scope": "Local web preview using bundled fallback guides and isolated guest browser storage. No production data changed."
+}

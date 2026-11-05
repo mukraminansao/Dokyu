@@ -2,6 +2,7 @@ import { Text, type TextProps } from 'react-native';
 import type { TextVariant } from '@dokyu/shared';
 import { useSettings } from '../../lib/settings';
 import { cn } from '../../lib/cn';
+import { useLayout } from '../../lib/useLayout';
 
 const WEIGHT = {
   regular: 'font-poppins',
@@ -29,6 +30,7 @@ const DEFAULT_WEIGHT: Record<TextVariant, keyof typeof WEIGHT> = {
   title: 'semibold',
   h2: 'semibold',
   h1: 'bold',
+  hero: 'bold',
   display: 'bold',
 };
 
@@ -51,9 +53,22 @@ export function AppText({
   style,
   ...rest
 }: AppTextProps) {
-  const { textSize } = useSettings();
-  const size = textSize(variant);
-  const isHeading = variant === 'h1' || variant === 'h2' || variant === 'display';
+  const { textSize, largeText } = useSettings();
+  const { isDesktop } = useLayout();
+  const desktop = {
+    caption: 12,
+    small: 14,
+    body: 18,
+    bodyLg: 18,
+    title: 24,
+    h2: 26,
+    h1: 28,
+    hero: 36,
+    display: 88,
+  };
+  const size = isDesktop && !largeText ? desktop[variant] : textSize(variant);
+  const isHeading =
+    variant === 'h1' || variant === 'h2' || variant === 'hero' || variant === 'display';
   return (
     <Text
       accessibilityRole={isHeading ? 'header' : rest.accessibilityRole}

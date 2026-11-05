@@ -1,20 +1,20 @@
-/** Home, following the locked Bayan Blue prototype (plan §4.2), adapted to the citizen-first scope (v1.6). */
-import { useCallback, useState, type ReactNode } from 'react';
-import { HOME_TOUR, useTour, useTourTarget } from '../../lib/tour';
-import { Link, useFocusEffect, useRouter } from 'expo-router';
-import { Pressable, ScrollView, View } from 'react-native';
+/** Bayan Blue refined Home; see docs/UI-REFINEMENT-PLAN.md for the approved direction. */
+import { useCallback, useState } from 'react';
+import { HOME_TOUR, HOME_TOUR_VERSION, useTour, useTourTarget } from '../../lib/tour';
+import { useFocusEffect, useRouter } from 'expo-router';
+import { Pressable, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { colors, pick, startingFee } from '@dokyu/shared';
+import { colors } from '@dokyu/shared';
 import { Screen } from '../../components/ui/Screen';
 import { Wordmark } from '../../components/ui/Wordmark';
-import { AgencyTile } from '../../components/ui/AgencyTile';
-import { AppText } from '../../components/ui/AppText';
+import { HomeText as AppText } from '../../components/home/HomeText';
 import { PressableCard } from '../../components/ui/Card';
 import { Disclaimer } from '../../components/ui/Disclaimer';
 import { Icon } from '../../components/ui/Icon';
 import { GreetingCard } from '../../components/home/GreetingCard';
 import { ServiceGrid, type Tile } from '../../components/home/ServiceGrid';
 import { ForYouCard } from '../../components/home/ForYouCard';
+import { PopularGuides, VisitTools } from '../../components/home/HomeSections';
 import { FadeIn } from '../../lib/motion';
 import { useLayout } from '../../lib/useLayout';
 import { useAuth } from '../../lib/auth';
@@ -22,26 +22,18 @@ import { useGuides } from '../../lib/guides';
 import { useSettings } from '../../lib/settings';
 import { useAllChecklists } from '../../lib/checklist';
 import { forYou } from '../../lib/forYou';
-import { formatFee } from '../../lib/format';
-import { TextLink } from '../../components/ui/TextLink';
 import { docAlerts, useMyDocs } from '../../lib/mydocs';
 import { manilaTime } from '@dokyu/shared';
 import { useNow } from '../../lib/offices';
-
-const POPULAR = [
-  'nbi-clearance',
-  'psa-birth-certificate',
-  'national-id',
-  'passport',
-  'police-clearance',
-];
+import { TextLink } from '../../components/ui/TextLink';
 
 export default function Home() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { isDesktop } = useLayout();
+  const { width, isDesktop } = useLayout();
   const { user } = useAuth();
-  const { language, goals, tourSeen, ready } = useSettings();
+  const { largeText, goals, tourSeen, homeTourVersion, update, ready } = useSettings();
+  const columns = width >= 900 && !largeText;
   const tour = useTour();
   const servicesRef = useTourTarget('home.services');
   const forYouRef = useTourTarget('home.forYou');
@@ -50,10 +42,16 @@ export default function Home() {
   // First visit: Doki shows the user around once.
   useFocusEffect(
     useCallback(() => {
-      if (!ready || tourSeen || touring) return;
-      const timer = setTimeout(() => startTour(HOME_TOUR), 900);
+      if (!ready || (tourSeen && homeTourVersion >= HOME_TOUR_VERSION) || touring) return;
+      const timer = setTimeout(
+        () =>
+          startTour(HOME_TOUR, () =>
+            update({ tourSeen: true, homeTourVersion: HOME_TOUR_VERSION }),
+          ),
+        900,
+      );
       return () => clearTimeout(timer);
-    }, [ready, tourSeen, touring, startTour]),
+    }, [ready, tourSeen, homeTourVersion, touring, startTour, update]),
   );
   const { data: guides } = useGuides();
 
@@ -73,9 +71,9 @@ export default function Home() {
 
   // Document types: each opens Guides on that category.
   const findTiles: Tile[] = [
-    { key: 'ids', icon: 'account', label: t('tiles.ids'), category: 'identity' },
+    { key: 'ids', icon: 'identity', label: t('tiles.ids'), category: 'identity' },
     { key: 'clearances', icon: 'shield', label: t('tiles.clearances'), category: 'clearances' },
-    { key: 'civil', icon: 'people', label: t('tiles.civilRegistry'), category: 'civilRegistry' },
+    { key: 'civil', icon: 'document', label: t('tiles.civilRegistry'), category: 'civilRegistry' },
     { key: 'travel', icon: 'plane', label: t('tiles.travel'), category: 'travel' },
   ].map(({ category, ...tile }) => ({
     ...tile,
@@ -87,13 +85,13 @@ export default function Home() {
     {
       key: 'offices',
       icon: 'pin',
-      label: t('tiles.offices'),
+      label: t('home.findOffice'),
       onPress: () => router.push('/offices'),
     },
     {
       key: 'holidays',
       icon: 'calendar',
-      label: t('tiles.holidays'),
+      label: t('home.checkHolidays'),
       onPress: () => router.push('/holidays'),
     },
     {
@@ -106,17 +104,16 @@ export default function Home() {
   ];
 
   return (
-    <Screen tourScroll>
-      {!isDesktop && (
+    <Screen wide tourScroll canvas>
+      {!isDesktop ? (
         <FadeIn>
-          <View className="flex-row items-center justify-between">
-            <Wordmark />
+          <View className="flex-row items-center justify-between gap-4">
+            <Wordmark size={32} />
             <Pressable
               accessibilityRole="button"
               accessibilityLabel={t('nav.account')}
               onPress={() => router.push('/account')}
-              className="h-11 w-11 items-center justify-center bg-surface-alt active:opacity-80"
-              style={{ borderRadius: 14 }}
+              className="h-11 w-11 items-center justify-center rounded-full border border-line bg-primary-soft active:bg-primary-soft"
             >
               {firstName ? (
                 <AppText variant="body" weight="bold" tone="primary">
@@ -128,14 +125,14 @@ export default function Home() {
             </Pressable>
           </View>
         </FadeIn>
-      )}
+      ) : null}
 
       <FadeIn delay={40}>
         <GreetingCard name={firstName} />
       </FadeIn>
 
       {alerts.length ? (
-        <FadeIn delay={70}>
+        <FadeIn delay={60}>
           <PressableCard
             tone="gold"
             className="flex-row items-center gap-3"
@@ -155,99 +152,78 @@ export default function Home() {
         </FadeIn>
       ) : null}
 
-      <FadeIn delay={70}>
-        <Pressable
-          accessibilityRole="search"
-          accessibilityLabel={t('home.search')}
-          onPress={() => router.push({ pathname: '/guides', params: { focus: '1' } })}
-          className="min-h-[52px] flex-row items-center gap-3 rounded-lg border border-line bg-surface px-4 active:opacity-80"
-        >
-          <Icon name="search" size={20} color={colors.textMuted} />
-          <AppText variant="body" tone="subtle" className="flex-1" numberOfLines={1}>
-            {t('home.search')}
-          </AppText>
-        </Pressable>
+      {!isDesktop ? <HomeSearch /> : null}
+
+      <FadeIn delay={80}>
+        <View ref={forYouRef} collapsable={false}>
+          <ForYouCard item={next} />
+        </View>
       </FadeIn>
 
-      <FadeIn delay={100}>
+      {isDesktop ? <HomeSearch /> : null}
+
+      <FadeIn delay={110}>
         <View className="gap-3">
-          <View className="flex-row items-center justify-between">
-            <AppText variant="title">{t('home.findDoc')}</AppText>
-            <TextLink align="right" onPress={() => router.push('/guides')}>
-              {t('home.allGuides')}
-            </TextLink>
-          </View>
           <View ref={servicesRef} collapsable={false}>
             <ServiceGrid tiles={findTiles} />
           </View>
         </View>
       </FadeIn>
 
-      <FadeIn delay={160}>
-        <View className="gap-2.5">
-          <AppText variant="title">{t('home.forYou')}</AppText>
-          <View ref={forYouRef} collapsable={false}>
-            <ForYouCard item={next} />
+      <View style={{ flexDirection: columns ? 'row' : 'column', gap: 20, alignItems: 'stretch' }}>
+        <FadeIn delay={150} style={{ flex: columns ? 1.25 : undefined, minWidth: 0 }}>
+          <PopularGuides guides={guides} />
+        </FadeIn>
+        <FadeIn delay={180} style={{ flex: columns ? 1 : undefined, minWidth: 0 }}>
+          <View className="gap-4">
+            <VisitTools tiles={planTiles} />
+            <View className="flex-row items-start gap-3 rounded-card bg-gold-soft p-4">
+              <Icon name="bell" size={26} color="#B18100" />
+              <View className="flex-1 gap-1">
+                <AppText variant="body" weight="semibold" style={{ color: '#5C4300' }}>
+                  {t('home.visitTipTitle')}
+                </AppText>
+                <AppText variant="small" style={{ color: '#5C4300' }}>
+                  {t('home.visitTipBody')}
+                </AppText>
+              </View>
+            </View>
           </View>
-        </View>
-      </FadeIn>
-
-      <FadeIn delay={190}>
-        <View className="gap-3">
-          <AppText variant="title">{t('home.planVisit')}</AppText>
-          <ServiceGrid tiles={planTiles} />
-        </View>
-      </FadeIn>
-
-      <FadeIn delay={220}>
-        <View className="gap-2.5">
-          <View className="flex-row items-center justify-between">
-            <AppText variant="title">{t('home.popular')}</AppText>
-            <TextLink align="right" onPress={() => router.push('/guides')}>
-              {t('home.seeAll')}
-            </TextLink>
-          </View>
-          <PopularRow desktop={isDesktop}>
-            {POPULAR.map((slug) => {
-              const g = guides.find((x) => x.slug === slug);
-              if (!g) return null;
-              return (
-                // `Link asChild` replaces the card's style, so the width lives on a wrapping View.
-                <View key={slug} style={isDesktop ? { flex: 1, minWidth: 0 } : { width: 164 }}>
-                  <Link href={{ pathname: '/guides/[slug]', params: { slug } }} asChild>
-                    <PressableCard className="gap-2.5 flex-1">
-                      <AgencyTile mono={g.mono} size={40} />
-                      <AppText variant="body" weight="semibold" numberOfLines={2}>
-                        {pick(g.title, language)}
-                      </AppText>
-                      <AppText variant="caption" tone="muted">
-                        {t('home.steps', { n: g.steps.length })} ·{' '}
-                        {formatFee(startingFee(g.fees), t)}
-                      </AppText>
-                    </PressableCard>
-                  </Link>
-                </View>
-              );
-            })}
-          </PopularRow>
-        </View>
-      </FadeIn>
-
+        </FadeIn>
+      </View>
+      <View className="flex-row flex-wrap justify-center gap-5">
+        <TextLink
+          onPress={() =>
+            startTour(HOME_TOUR, () =>
+              update({ tourSeen: true, homeTourVersion: HOME_TOUR_VERSION }),
+            )
+          }
+        >
+          {t('tour.replay')}
+        </TextLink>
+        <TextLink onPress={() => router.push('/checklists')}>{t('tiles.checklists')}</TextLink>
+        <TextLink onPress={() => router.push('/docs')}>{t('tiles.myDocs')}</TextLink>
+      </View>
       <Disclaimer />
     </Screen>
   );
 }
 
-/** Popular guides: a swipeable row on phones, all cards side by side on desktop (a mouse can't swipe). */
-function PopularRow({ desktop, children }: { desktop: boolean; children: ReactNode }) {
-  if (desktop) return <View className="flex-row gap-3">{children}</View>;
+function HomeSearch() {
+  const { t } = useTranslation();
+  const router = useRouter();
   return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerClassName="gap-3 pb-1.5"
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={t('home.search')}
+      onPress={() => router.push({ pathname: '/guides', params: { focus: '1' } })}
+      className="min-h-[44px] flex-row items-center gap-3 rounded-lg border border-line bg-surface px-4 py-2 active:bg-primary-soft"
+      style={{ borderColor: colors.refinedBorder }}
     >
-      {children}
-    </ScrollView>
+      <Icon name="search" size={20} color={colors.textMuted} />
+      <AppText variant="body" tone="muted" style={{ flex: 1 }}>
+        {t('home.search')}
+      </AppText>
+    </Pressable>
   );
 }

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, type ReactNode } from 'react';
+import { useCallback, useRef, type ReactNode } from 'react';
 import { Animated, Platform, ScrollView, View } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { useTourMaybe, type Scrollable } from '../../lib/tour';
@@ -6,6 +6,8 @@ import { useReducedMotion } from '../../lib/motion';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLayout } from '../../lib/useLayout';
 import { cn } from '../../lib/cn';
+import { colors } from '@dokyu/shared';
+import { ConnectionNotice } from './ConnectionNotice';
 
 /**
  * Page wrapper: scrolls, respects the notch, and centres content with a readable max width.
@@ -16,12 +18,15 @@ export function Screen({
   wide = false,
   className,
   tourScroll = false,
+  canvas = true,
 }: {
   children: ReactNode;
   wide?: boolean;
   className?: string;
   /** Let the guided tour scroll this screen to its targets. */
   tourScroll?: boolean;
+  /** Soft canvas for the refined Home; other screens retain their current surface. */
+  canvas?: boolean;
 }) {
   const { isDesktop } = useLayout();
   const reduced = useReducedMotion();
@@ -29,11 +34,13 @@ export function Screen({
   const scroll = useRef<Scrollable | null>(null);
   const offset = useRef(0);
   const setScroller = tour?.setScroller;
-  useEffect(() => {
-    if (!tourScroll || !scroll.current || !setScroller) return;
-    setScroller({ ref: scroll.current, offset: () => offset.current });
-    return () => setScroller(null);
-  }, [tourScroll, setScroller]);
+  useFocusEffect(
+    useCallback(() => {
+      if (!tourScroll || !scroll.current || !setScroller) return;
+      setScroller({ ref: scroll.current, offset: () => offset.current });
+      return () => setScroller(null);
+    }, [tourScroll, setScroller]),
+  );
 
   // Every time the screen comes into view it slides up and fades in a little.
   const enter = useRef(new Animated.Value(1)).current;
@@ -53,7 +60,11 @@ export function Screen({
   const opacity = enter.interpolate({ inputRange: [0, 1], outputRange: [0.25, 1] });
 
   return (
-    <SafeAreaView edges={isDesktop ? [] : ['top']} className="flex-1 bg-surface">
+    <SafeAreaView
+      edges={isDesktop ? [] : ['top']}
+      className={cn('flex-1', canvas ? 'bg-surface-alt' : 'bg-surface')}
+      style={canvas ? { backgroundColor: colors.refinedCanvas } : undefined}
+    >
       <ScrollView
         ref={(node: Scrollable | null) => {
           scroll.current = node;
@@ -62,14 +73,15 @@ export function Screen({
           offset.current = e.nativeEvent.contentOffset.y;
         }}
         scrollEventThrottle={32}
-        contentContainerClassName={isDesktop ? 'px-10 pb-16 pt-10' : 'px-5 pb-10 pt-5'}
+        contentContainerClassName={isDesktop ? 'px-6 pb-16 pt-7' : 'px-4 pb-16 pt-5'}
         keyboardShouldPersistTaps="handled"
       >
         <Animated.View style={{ opacity, transform: [{ translateY }] }}>
           <View
-            className={cn('w-full self-center gap-5', className)}
-            style={{ maxWidth: wide ? 1080 : 760 }}
+            className={cn('w-full self-center', canvas ? 'gap-4' : 'gap-5', className)}
+            style={{ maxWidth: canvas ? 880 : wide ? 1080 : 760 }}
           >
+            <ConnectionNotice />
             {children}
           </View>
         </Animated.View>

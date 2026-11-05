@@ -1,0 +1,512 @@
+[
+  {
+    "mode": "phone",
+    "violations": [],
+    "reviewNeeded": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          {
+            "target": ["span"],
+            "html": "<span class=\"css-textHasAncestor-1jxf684\" style=\"color: rgb(224, 168, 0);\">y</span>",
+            "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+          },
+          {
+            "target": [
+              "div[aria-label=\"Ask Doki\"] > .text-primary.font-poppins-bold.css-text-146c3p1"
+            ],
+            "html": "<div dir=\"auto\" class=\"css-text-146c3p1 font-poppins-bold text-primary\" style=\"font-size: 11px; line-height: 16px; text-align: center;\">Doki</div>",
+            "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+          }
+        ]
+      }
+    ],
+    "bounds": {
+      "tab": {
+        "x": 159,
+        "y": 742,
+        "w": 72,
+        "h": 92
+      },
+      "ancestors": [
+        {
+          "role": "tablist",
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 736,
+            "w": 390,
+            "h": 108
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "BODY",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        },
+        {
+          "role": null,
+          "tag": "HTML",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 844
+          }
+        }
+      ]
+    }
+  },
+  {
+    "mode": "small-large",
+    "violations": [],
+    "reviewNeeded": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          {
+            "target": ["span"],
+            "html": "<span class=\"css-textHasAncestor-1jxf684\" style=\"color: rgb(224, 168, 0);\">y</span>",
+            "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+          },
+          {
+            "target": [
+              "div[aria-label=\"Ask Doki\"] > .text-primary.font-poppins-bold.css-text-146c3p1"
+            ],
+            "html": "<div dir=\"auto\" class=\"css-text-146c3p1 font-poppins-bold text-primary\" style=\"font-size: 15px; line-height: 22px; text-align: center;\">Doki</div>",
+            "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+          }
+        ]
+      }
+    ],
+    "bounds": {
+      "tab": {
+        "x": 124,
+        "y": 632,
+        "w": 72,
+        "h": 98
+      },
+      "ancestors": [
+        {
+          "role": "tablist",
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 626,
+            "w": 320,
+            "h": 114
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "BODY",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        },
+        {
+          "role": null,
+          "tag": "HTML",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 320,
+            "h": 740
+          }
+        }
+      ]
+    }
+  },
+  {
+    "mode": "desktop",
+    "violations": [],
+    "reviewNeeded": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          {
+            "target": ["span"],
+            "html": "<span class=\"css-textHasAncestor-1jxf684\" style=\"color: rgb(224, 168, 0);\">y</span>",
+            "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+          }
+        ]
+      }
+    ],
+    "bounds": {
+      "tab": {
+        "x": 16,
+        "y": 202,
+        "w": 223,
+        "h": 60
+      },
+      "ancestors": [
+        {
+          "role": "tablist",
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 16,
+            "y": 90,
+            "w": 223,
+            "h": 284
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 16,
+            "y": 24,
+            "w": 223,
+            "h": 350
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 256,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "DIV",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "BODY",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        },
+        {
+          "role": null,
+          "tag": "HTML",
+          "contains": true,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 1050
+          }
+        }
+      ]
+    }
+  }
+]

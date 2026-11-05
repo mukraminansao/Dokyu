@@ -45,7 +45,8 @@ interface Scroller {
 
 interface TourContextValue {
   steps: TourStep[] | null;
-  start: (steps: TourStep[]) => void;
+  start: (steps: TourStep[], onComplete?: () => void) => void;
+  complete: () => void;
   stop: () => void;
   register: (id: string, node: Measurable | null) => void;
   setScroller: (scroller: Scroller | null) => void;
@@ -71,8 +72,23 @@ function measure(node: Measurable): Promise<Rect | null> {
 
 export function TourProvider({ children }: { children: ReactNode }) {
   const [steps, setSteps] = useState<TourStep[] | null>(null);
+  const completion = useRef<(() => void) | undefined>(undefined);
   const targets = useRef(new Map<string, Measurable>());
   const scroller = useRef<Scroller | null>(null);
+  const start = useCallback((next: TourStep[], onComplete?: () => void) => {
+    completion.current = onComplete;
+    setSteps(next);
+  }, []);
+  const stop = useCallback(() => {
+    completion.current = undefined;
+    setSteps(null);
+  }, []);
+  const complete = useCallback(() => {
+    const done = completion.current;
+    completion.current = undefined;
+    done?.();
+    setSteps(null);
+  }, []);
 
   const register = useCallback((id: string, node: Measurable | null) => {
     if (node) targets.current.set(id, node);
@@ -101,13 +117,14 @@ export function TourProvider({ children }: { children: ReactNode }) {
   const value = useMemo<TourContextValue>(
     () => ({
       steps,
-      start: (next) => setSteps(next),
-      stop: () => setSteps(null),
+      start,
+      complete,
+      stop,
       register,
       setScroller,
       locate,
     }),
-    [steps, register, setScroller, locate],
+    [steps, start, complete, stop, register, setScroller, locate],
   );
 
   return <TourContext.Provider value={value}>{children}</TourContext.Provider>;
@@ -119,7 +136,7 @@ export function useTour(): TourContextValue {
   return ctx;
 }
 
-/** The tour, or null outside the tabs (sign-in, welcome). */
+/** Optional access for shared screens; the root provider covers accounts and tabs. */
 export function useTourMaybe(): TourContextValue | null {
   return useContext(TourContext);
 }
@@ -140,3 +157,25 @@ export const HOME_TOUR: TourStep[] = [
   { target: 'tab.guides', text: 'tour.guides', pose: 'pointDown' },
   { text: 'tour.done', pose: 'happy', confetti: true },
 ];
+
+export const HOME_TOUR_VERSION = 2;
+
+/** Account guidance has its own completion state and never completes the Home tour. */
+export function authTour(kind: 'sign-in' | 'sign-up' | 'recovery', preview: boolean): TourStep[] {
+  return [
+    { text: 'tour.authHello', pose: 'wave' },
+    {
+      target: 'auth.form.' + kind,
+      text: preview
+        ? 'tour.authPreview'
+        : kind === 'sign-up'
+          ? 'tour.authSignup'
+          : kind === 'recovery'
+            ? 'tour.authRecovery'
+            : 'tour.authSignin',
+      pose: 'point',
+    },
+    { text: 'tour.authPrivacy', pose: 'talk' },
+    { text: 'tour.authGuest', pose: 'happy' },
+  ];
+}
