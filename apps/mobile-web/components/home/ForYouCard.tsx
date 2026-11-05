@@ -1,4 +1,5 @@
-import { Animated, Pressable, View } from 'react-native';
+import { Animated, View } from 'react-native';
+import { Pressable } from '../ui/Pressable';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { GOALS, colors, pick } from '@dokyu/shared';

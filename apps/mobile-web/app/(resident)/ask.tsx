@@ -3,14 +3,8 @@
  * Tagalog, with buttons that take you to the right page. Works offline; nothing you type leaves the phone.
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  KeyboardAvoidingView,
-  Platform,
-  Pressable,
-  ScrollView,
-  TextInput,
-  View,
-} from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, TextInput, View } from 'react-native';
+import { Pressable } from '../../components/ui/Pressable';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';

@@ -75,7 +75,10 @@
     "back": "Bumalik sa mga gabay"
   },
   "settings": {
-    "title": "Display",
+    "title": "Display at tunog",
+    "soundEffects": "Mga tunog",
+    "soundEffectsHint": "Mahinang tunog sa mga pindutan at gabay ni Doki. Naka-save sa device na ito.",
+    "previewSound": "Pakinggan ang tunog ni Doki",
     "language": "Wika",
     "largeText": "Malaking letra",
     "largeTextHint": "Mas malaking letra sa bawat screen."

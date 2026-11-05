@@ -75,7 +75,10 @@
     "back": "Back to guides"
   },
   "settings": {
-    "title": "Display",
+    "title": "Display & sound",
+    "soundEffects": "Sound effects",
+    "soundEffectsHint": "Soft button taps and Doki guide sounds. Saved on this device.",
+    "previewSound": "Preview Doki sound",
     "language": "Language",
     "largeText": "Large text",
     "largeTextHint": "Bigger letters on every screen."

@@ -1,6 +1,7 @@
 /** First-launch intro: 3 slides with Doki, Skip on every slide, shown once (plan §3.1 H.12). */
-import { useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import { Pressable } from '../components/ui/Pressable';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +13,7 @@ import { Wordmark } from '../components/ui/Wordmark';
 import { Disclaimer } from '../components/ui/Disclaimer';
 import { useSettings } from '../lib/settings';
 import { Float, PopOnChange } from '../lib/motion';
+import { playSound, stopGuideSounds } from '../lib/sounds';
 
 const SLIDES = [1, 2, 3] as const;
 
@@ -22,6 +24,10 @@ export default function Welcome() {
   const [i, setI] = useState(0);
   const slide = SLIDES[i] ?? 1;
   const last = i === SLIDES.length - 1;
+  useEffect(() => {
+    playSound(i === 0 ? 'hello' : i === 2 ? 'complete' : 'step');
+    return stopGuideSounds;
+  }, [i]);
 
   const skip = () => {
     update({ introSeen: true, setupDone: true });

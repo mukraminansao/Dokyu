@@ -1,4 +1,5 @@
-import { Animated, Pressable, View } from 'react-native';
+import { Animated, View } from 'react-native';
+import { Pressable } from '../ui/Pressable';
 import { useTranslation } from 'react-i18next';
 import { colors } from '@dokyu/shared';
 import { HomeText as AppText } from './HomeText';

@@ -3,7 +3,8 @@
  * Guests keep the answers on the device; signed-in users also save them to their profile.
  */
 import { useMemo, useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import { Pressable } from '../components/ui/Pressable';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { GOALS, PROVINCES, colors, type GoalSlug } from '@dokyu/shared';

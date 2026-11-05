@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable } from 'react-native';
+import { Pressable } from './Pressable';
 import { useTranslation } from 'react-i18next';
 import { colors } from '@dokyu/shared';
 import { Input, type InputProps } from './Input';

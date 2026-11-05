@@ -20,6 +20,8 @@ const STORAGE_KEY = 'dokyu.settings.v1';
 export interface Settings {
   language: Language;
   largeText: boolean;
+  /** Local device preference for taps and Doki's guide cues. */
+  soundEffects: boolean;
   /** The intro slides were shown (or skipped). */
   introSeen: boolean;
   /** Language, area and goals were answered (or skipped). */
@@ -57,6 +59,7 @@ function readSaved(raw: string | null, fallback: Settings): Settings {
   return {
     language: s.language === 'tl' || s.language === 'en' ? s.language : fallback.language,
     largeText: typeof s.largeText === 'boolean' ? s.largeText : fallback.largeText,
+    soundEffects: typeof s.soundEffects === 'boolean' ? s.soundEffects : fallback.soundEffects,
     introSeen: s.introSeen === true,
     tourSeen: s.tourSeen === true,
     homeTourVersion: typeof s.homeTourVersion === 'number' ? s.homeTourVersion : 0,
@@ -76,6 +79,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const [settings, setSettings] = useState<Settings>({
     language: detectLanguage(),
     largeText: false,
+    soundEffects: true,
     introSeen: false,
     setupDone: false,
     province: null,

@@ -1,4 +1,4 @@
-import { Pressable } from 'react-native';
+import { Pressable } from './Pressable';
 import { useRouter, type Href } from 'expo-router';
 import { colors } from '@dokyu/shared';
 import { AppText } from './AppText';

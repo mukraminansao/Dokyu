@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Pressable } from 'react-native';
+import { Pressable } from './Pressable';
 import { AppText } from './AppText';
 
 /** A text link with a full-size tap area (44 px tall), for small "See all"-style links. */

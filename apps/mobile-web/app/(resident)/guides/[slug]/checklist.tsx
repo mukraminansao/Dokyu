@@ -1,7 +1,8 @@
 /** "Before you go" checklist (plan v1.6 §3.1 A): tick off each requirement the night before. */
 import { useEffect, useRef, useState } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import { Pressable } from '../../../../components/ui/Pressable';
 import { useTranslation } from 'react-i18next';
 import { colors, pick } from '@dokyu/shared';
 import { Screen } from '../../../../components/ui/Screen';

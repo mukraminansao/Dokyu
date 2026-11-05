@@ -1,5 +1,6 @@
 import { useCallback, type ReactNode } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import { Pressable } from './ui/Pressable';
 import { useRouter, usePathname, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { colors, shadow } from '@dokyu/shared';

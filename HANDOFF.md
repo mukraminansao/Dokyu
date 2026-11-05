@@ -1,5 +1,9 @@
 # Dokyu: handoff for the next session
 
+## Sound feedback (6 November 2026)
+
+Added original soft tap cues and Doki movement/greeting/step/completion earcons. All active Pressable imports use the shared ref-preserving sound wrapper; browser links and switches are covered by one root listener. Account has a local **Sound effects** toggle (default on) and keyboard-accessible preview. Web Audio starts after interaction, native uses Expo Audio 58 with five tiny bundled WAVs, and mute/background/guide cleanup stops playback. Recording/background capabilities are disabled. All 87 tests, lint, workspace types and web/Android exports pass; browser cues/mute persistence/keyboard preview were verified. See [AUDIO-FEEDBACK.md](docs/AUDIO-FEEDBACK.md). Physical Android audio remains unverified.
+
 ## Mobile category sizing follow-up
 
 Home category icons increased from 25px to 32px on phones; normal cards are at least 64px tall (68px below 360px). Standard phone labels are 15px. Redundant mobile chevrons were removed to give labels room; desktop icon/card sizing stays the same. Four columns now start at 760px for the mobile/tablet layout and 1040px for the sidebar layout, so intermediate widths keep readable two-column cards. Large-text mode uses 36px icons in 72px full-width phone rows. Browser checks confirm no page overflow at 320px/390px/600px/1024px; “Clearances” stays on one line at 320px. Large-text settings used for the check were restored. Formatting, app TypeScript, component lint and production web export pass. Screenshot and intermediate-width measurements: `docs/ui-concepts/implemented/category-size-phone.png` and `category-size-layouts.json`.

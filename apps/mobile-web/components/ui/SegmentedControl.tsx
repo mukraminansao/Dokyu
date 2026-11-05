@@ -1,4 +1,5 @@
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import { Pressable } from './Pressable';
 import { AppText } from './AppText';
 import { cn } from '../../lib/cn';
 

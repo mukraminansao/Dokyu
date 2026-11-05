@@ -3,7 +3,8 @@
  * tour (walk to a button, point, say a line). Never blocks touches; with reduce motion he just stands and points.
  */
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Platform, Pressable, View } from 'react-native';
+import { Animated, Easing, Platform, View } from 'react-native';
+import { Pressable } from './Pressable';
 import { AppText } from './AppText';
 import { Doki, type DokiPose } from './Doki';
 import { useReducedMotion } from '../../lib/motion';

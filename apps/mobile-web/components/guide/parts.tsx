@@ -1,5 +1,6 @@
 /** Building blocks for guide pages (plan v1.6 §3.1 A). */
-import { Linking, Platform, Pressable, View } from 'react-native';
+import { Linking, Platform, View } from 'react-native';
+import { Pressable } from '../ui/Pressable';
 import { useTranslation } from 'react-i18next';
 import { colors, pick, type GuideAction, type GuideStep, type Requirement } from '@dokyu/shared';
 import { AppText } from '../ui/AppText';

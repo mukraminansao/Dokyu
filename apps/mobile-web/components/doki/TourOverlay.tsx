@@ -4,7 +4,8 @@
  * With reduce motion everything still works, it just appears in place instead of moving.
  */
 import { useCallback, useEffect, useRef, useState, type ElementRef } from 'react';
-import { Animated, Easing, Platform, Pressable, View, useWindowDimensions } from 'react-native';
+import { Animated, Easing, Platform, View, useWindowDimensions } from 'react-native';
+import { Pressable } from '../ui/Pressable';
 import { useTranslation } from 'react-i18next';
 import { colors } from '@dokyu/shared';
 import { AppText } from '../ui/AppText';
@@ -15,6 +16,7 @@ import { useReducedMotion } from '../../lib/motion';
 import { useTour, type Rect } from '../../lib/tour';
 import { useLayout } from '../../lib/useLayout';
 import { useSettings } from '../../lib/settings';
+import { playSound, stopGuideSounds } from '../../lib/sounds';
 
 const native = Platform.OS !== 'web';
 const PAD = 8;
@@ -136,6 +138,19 @@ export function TourOverlay() {
   const D = isDesktop ? 110 : 92;
 
   const steps = tour.steps;
+  const soundStep = useRef({
+    steps: null as typeof steps,
+    index: -1,
+    moved: false,
+    explained: false,
+  });
+  useEffect(() => {
+    if (steps)
+      return () => {
+        stopGuideSounds();
+        soundStep.current.steps = null;
+      };
+  }, [steps]);
   const [index, setIndex] = useState(0);
   const [placement, setPlacement] = useState<Placement | null>(null);
   const [walking, setWalking] = useState(false);
@@ -209,6 +224,15 @@ export function TourOverlay() {
       const rect = step.target ? await tour.locate(step.target, H) : null;
       if (cancelled) return;
       const p = place(rect, W, H, D, step.pose ?? 'talk');
+      if (soundStep.current.steps !== steps || soundStep.current.index !== index) {
+        soundStep.current = { steps, index, moved: false, explained: false };
+      }
+      const cue = soundStep.current;
+      const explain = () => {
+        if (cue.explained) return;
+        cue.explained = true;
+        playSound(index === steps.length - 1 ? 'complete' : index === 0 ? 'hello' : 'step');
+      };
       const from = first.current ? { x: -D - 20, y: p.doki.y } : pos.current;
       first.current = false;
       pos.current = p.doki;
@@ -238,11 +262,16 @@ export function TourOverlay() {
         dokiY.setValue(p.doki.y);
         setPlacement(p);
         setTalking(true);
+        explain();
         if (step.confetti) setBurst((b) => b + 1);
         return;
       }
 
       const distance = Math.hypot(p.doki.x - from.x, p.doki.y - from.y);
+      if (distance > 4 && !cue.moved) {
+        cue.moved = true;
+        playSound('move');
+      }
       const duration = clamp(distance * 2.4, 450, 1300);
       dokiX.setValue(from.x);
       dokiY.setValue(from.y);
@@ -280,6 +309,7 @@ export function TourOverlay() {
         if (cancelled) return;
         setWalking(false);
         setTalking(true);
+        explain();
         if (step.confetti) setBurst((b) => b + 1);
       });
     })();
@@ -307,6 +337,7 @@ export function TourOverlay() {
   const onTyping = useCallback((v: boolean) => setTyping(v), []);
 
   const finish = useCallback(() => {
+    stopGuideSounds();
     Animated.timing(fade, {
       toValue: 0,
       duration: reduced ? 0 : 220,

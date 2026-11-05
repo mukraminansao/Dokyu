@@ -1,4 +1,5 @@
-import { Animated, Pressable, View, type PressableProps, type ViewProps } from 'react-native';
+import { Animated, View, type PressableProps, type ViewProps } from 'react-native';
+import { Pressable } from './Pressable';
 import { shadow } from '@dokyu/shared';
 import { cn } from '../../lib/cn';
 import { usePressScale } from '../../lib/motion';

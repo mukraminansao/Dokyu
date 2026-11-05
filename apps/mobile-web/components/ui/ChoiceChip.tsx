@@ -1,4 +1,4 @@
-import { Pressable } from 'react-native';
+import { Pressable } from './Pressable';
 import { colors } from '@dokyu/shared';
 import { AppText } from './AppText';
 import { Icon } from './Icon';

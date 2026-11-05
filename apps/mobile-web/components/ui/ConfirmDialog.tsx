@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { Modal, Pressable, View } from 'react-native';
+import { Modal, View } from 'react-native';
+import { Pressable } from './Pressable';
 import { AppText } from './AppText';
 import { Button } from './Button';
 

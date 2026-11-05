@@ -3,7 +3,8 @@
  * so Doki can move his mouth. Screen readers get the whole sentence at once. Tapping it shows the full text.
  */
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Animated, Platform, Pressable, ScrollView, View } from 'react-native';
+import { Animated, Platform, ScrollView, View } from 'react-native';
+import { Pressable } from '../ui/Pressable';
 import { colors } from '@dokyu/shared';
 import { AppText } from '../ui/AppText';
 import { useReducedMotion } from '../../lib/motion';

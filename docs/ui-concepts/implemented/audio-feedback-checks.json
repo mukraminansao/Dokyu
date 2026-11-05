@@ -1,0 +1,114 @@
+{
+  "cuesObserved": ["tap", "hello", "move", "step", "complete"],
+  "mutedBaseline": 4,
+  "mutedAfterTour": 4,
+  "muteSurvivesReload": true,
+  "keyboardPreviewWorks": true,
+  "tagalogLargeText320Fits": true,
+  "events": [
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:26:14.472Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:26:52.101Z"
+    },
+    {
+      "message": "[Dokyu audio] hello running",
+      "timestamp": "2026-11-05T16:26:52.103Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:26:52.375Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:28:04.757Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:28:04.966Z"
+    },
+    {
+      "message": "[Dokyu audio] hello running",
+      "timestamp": "2026-11-05T16:28:04.967Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:28:05.264Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:28:05.568Z"
+    },
+    {
+      "message": "[Dokyu audio] move running",
+      "timestamp": "2026-11-05T16:28:05.601Z"
+    },
+    {
+      "message": "[Dokyu audio] hello running",
+      "timestamp": "2026-11-05T16:28:06.238Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:28:06.543Z"
+    },
+    {
+      "message": "[Dokyu audio] move running",
+      "timestamp": "2026-11-05T16:28:07.016Z"
+    },
+    {
+      "message": "[Dokyu audio] step running",
+      "timestamp": "2026-11-05T16:28:07.473Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:28:07.768Z"
+    },
+    {
+      "message": "[Dokyu audio] move running",
+      "timestamp": "2026-11-05T16:28:08.237Z"
+    },
+    {
+      "message": "[Dokyu audio] step running",
+      "timestamp": "2026-11-05T16:28:08.691Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:28:08.905Z"
+    },
+    {
+      "message": "[Dokyu audio] move running",
+      "timestamp": "2026-11-05T16:28:09.378Z"
+    },
+    {
+      "message": "[Dokyu audio] step running",
+      "timestamp": "2026-11-05T16:28:10.027Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:28:10.353Z"
+    },
+    {
+      "message": "[Dokyu audio] move running",
+      "timestamp": "2026-11-05T16:28:10.823Z"
+    },
+    {
+      "message": "[Dokyu audio] step running",
+      "timestamp": "2026-11-05T16:28:11.279Z"
+    },
+    {
+      "message": "[Dokyu audio] tap running",
+      "timestamp": "2026-11-05T16:28:11.569Z"
+    },
+    {
+      "message": "[Dokyu audio] move running",
+      "timestamp": "2026-11-05T16:28:11.578Z"
+    },
+    {
+      "message": "[Dokyu audio] complete running",
+      "timestamp": "2026-11-05T16:28:12.715Z"
+    }
+  ]
+}

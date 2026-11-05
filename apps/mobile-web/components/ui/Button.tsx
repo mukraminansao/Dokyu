@@ -1,4 +1,5 @@
-import { ActivityIndicator, Animated, Pressable, View, type PressableProps } from 'react-native';
+import { ActivityIndicator, Animated, View, type PressableProps } from 'react-native';
+import { Pressable } from './Pressable';
 import type { ReactNode } from 'react';
 import { colors } from '@dokyu/shared';
 import { AppText } from './AppText';

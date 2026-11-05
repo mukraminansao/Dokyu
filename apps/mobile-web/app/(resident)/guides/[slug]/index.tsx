@@ -1,5 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import { Pressable } from '../../../../components/ui/Pressable';
 import { useTranslation } from 'react-i18next';
 import { colors, formatPeso, mainAction, pick, startingFee } from '@dokyu/shared';
 import { Screen, Section } from '../../../../components/ui/Screen';

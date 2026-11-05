@@ -1,6 +1,7 @@
 /** My Docs (plan §3.1 C): everything you and your family have, are getting or need, and what needs attention. */
 import { useMemo, useState } from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
+import { Pressable } from '../../../components/ui/Pressable';
 import { Link, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { GUIDES, colors, manilaTime, pick } from '@dokyu/shared';

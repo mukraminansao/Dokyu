@@ -1,6 +1,7 @@
 /** Goal planner (plan §3.1 B): what to get for a goal, in what order, how much in total, and how long. */
 import { useMemo, useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import { Pressable } from '../../components/ui/Pressable';
 import { Link, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import {
@@ -28,6 +29,7 @@ import { useGuides } from '../../lib/guides';
 import { useMyDocs } from '../../lib/mydocs';
 import { useSettings } from '../../lib/settings';
 import { formatFee } from '../../lib/format';
+import { playSound } from '../../lib/sounds';
 
 export default function Goals() {
   const { t } = useTranslation();
@@ -203,7 +205,7 @@ export default function Goals() {
           <AppText variant="body" weight="semibold" tone="success" className="flex-1">
             {t('goals.allTracked')}
           </AppText>
-          <Link href="/docs">
+          <Link href="/docs" onPress={() => playSound('tap')}>
             <AppText variant="small" weight="semibold" tone="primary">
               {t('nav.docs')}
             </AppText>
