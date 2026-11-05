@@ -31,4 +31,4 @@ This is an implementation of the reference, with responsive behavior and actual 
 
 ## Release
 
-Both exports pass. Source publication and live verification are in progress.
+Release `4eeb275` is pushed to `main` and live at https://dokyu.onrender.com. Verified deployed bundle `entry-9db3a25085ac1e880b794d29579191b4.js`, changing mascot joint transforms on the actual site, desktop and phone layouts, pure white mobile navigation, solid blue selected Home, banner-triggered walkthrough and the distinct pointing pose on step 2. No console errors were reported during the live checks. Live screenshots are `live-desktop.png`, `live-phone.png` and `live-tour.png` in the evidence directory.
