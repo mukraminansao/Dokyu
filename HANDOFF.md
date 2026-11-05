@@ -1,5 +1,9 @@
 # Dokyu: handoff for the next session
 
+## Mobile category sizing follow-up
+
+Home category icons increased from 25px to 32px on phones; normal cards are at least 64px tall (68px below 360px). Standard phone labels are 15px. Redundant mobile chevrons were removed to give labels room; desktop icon/card sizing stays the same. Four columns now start at 760px for the mobile/tablet layout and 1040px for the sidebar layout, so intermediate widths keep readable two-column cards. Large-text mode uses 36px icons in 72px full-width phone rows. Browser checks confirm no page overflow at 320px/390px/600px/1024px; “Clearances” stays on one line at 320px. Large-text settings used for the check were restored. Formatting, app TypeScript, component lint and production web export pass. Screenshot and intermediate-width measurements: `docs/ui-concepts/implemented/category-size-phone.png` and `category-size-layouts.json`.
+
 ## Reference detail correction and articulated Doki (5 November 2026)
 
 The user requested a closer match and rejected the single-frame character. The latest pass replaces active PNG mascot placements with an articulated, reference-shaped SVG rig: independent limbs, walking gait, blinking/gaze, expressions, speaking mouth and badge sway. Banner Doki starts the Home tour. Home now uses the available desktop width; mobile header/location/avatar, solid selected icons, white navigation, progress-card icon/spacing, shield check, typography and search details were corrected. Large-text tour placement and the 320px navbar overflow were fixed during direct browser checks. See [REFERENCE-DETAIL-PASS.md](docs/REFERENCE-DETAIL-PASS.md) for the current checklist and evidence. The static-image implementation and release notes below describe the previous iteration.

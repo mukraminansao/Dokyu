@@ -1,0 +1,62 @@
+[
+  {
+    "cards": [
+      {
+        "icon": "32",
+        "label": "IDs",
+        "top": 633,
+        "width": 279
+      },
+      {
+        "icon": "32",
+        "label": "Clearances",
+        "top": 633,
+        "width": 279
+      },
+      {
+        "icon": "32",
+        "label": "Civil registry",
+        "top": 707,
+        "width": 279
+      },
+      {
+        "icon": "32",
+        "label": "Travel",
+        "top": 707,
+        "width": 279
+      }
+    ],
+    "scrollWidth": 600,
+    "width": 600
+  },
+  {
+    "cards": [
+      {
+        "icon": "30",
+        "label": "IDs",
+        "top": 595,
+        "width": 370.3333435058594
+      },
+      {
+        "icon": "30",
+        "label": "Clearances",
+        "top": 595,
+        "width": 370.3333435058594
+      },
+      {
+        "icon": "30",
+        "label": "Civil registry",
+        "top": 681,
+        "width": 370.3333435058594
+      },
+      {
+        "icon": "30",
+        "label": "Travel",
+        "top": 681,
+        "width": 370.3333435058594
+      }
+    ],
+    "scrollWidth": 1024,
+    "width": 1024
+  }
+]
