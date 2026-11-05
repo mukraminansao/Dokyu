@@ -18,7 +18,14 @@ Scope: the sixteen improvements approved on 5 November 2026, plus restoring Doki
 - [x] Full backend regression suite: 53 passing tests, including database-backed authentication, privacy, demo and document synchronization.
 - [x] Direct browser checks: independent sign-in/sign-up guides, six Home steps, completion persistence and replay, real local demo sign-in and document rendering. Twelve phone/desktop route layouts fit without horizontal page overflow; Tagalog with large text also fits at 320px. Screenshots and layout measurements saved under `docs/ui-concepts/implemented/`.
 - [x] Final lint, formatting, workspace types, 29 shared tests, production web export and Android Hermes export pass.
-- [ ] Commit and publish the approved release; verify the deployed asset and available user flows.
+- [x] Release `acd832a` pushed to `main` and deployed at https://dokyu.onrender.com. Verified the new live bundle, transparent mascot, automatic four-step account guide, automatic six-step Home guide, guest entry and public guide API (HTTP 200). The deployed bundle contains no `http://localhost:4000` URL. Live desktop/phone and walkthrough screenshots are saved alongside the local evidence.
+
+## Release evidence
+
+- Live bundle: `/_expo/static/js/web/entry-7d4a5e1e6c20e94d6cbdc25df0a7ae21.js`.
+- Live API health: HTTP 200, `status: ok`. Email delivery is disabled in the existing production configuration (`features.email: false`); production verification did not create accounts or send recovery email.
+- Current visual evidence: `live-home-desktop.png`, `live-home-phone.png`, `live-account-guide.png`, `live-home-guide.png`.
+- The exported web build was also served by the local API with `WEB_DIR` configured; direct `/sign-in` navigation and the automatic account walkthrough work there.
 
 ## Testing boundaries
 

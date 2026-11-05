@@ -8,7 +8,9 @@ Doki guidance now lives at the application root. Sign-in, sign-up and recovery h
 
 Verification: 53 database-backed server tests and 29 shared tests pass. Lint, all workspace typechecks, web export and Android Hermes export pass. Browser checks covered independent account guides, real local demo sign-in, six Home steps, completion persistence and replay, demo documents, twelve phone/desktop route layouts, matching translation keys, and Tagalog/large text at 320px without horizontal overflow. Screenshots and measurements are in `docs/ui-concepts/implemented/`; current checklist and limitations are in [FINISHING-PASS.md](docs/FINISHING-PASS.md). Physical Android notifications/location and a full assistive-technology audit remain unverified.
 
-Local development is isolated from production: Docker `dokyu-ui-audit-db`, PostgreSQL on 127.0.0.1:5434, API on 4000, Expo web on 8082. Credentials are only in ignored environment files. Production builds use `EXPO_PUBLIC_API_URL=same-origin`; never publish a bundle pointing to localhost. Release publication and live verification are tracked in the finishing checklist.
+Local development is isolated from production: Docker `dokyu-ui-audit-db`, PostgreSQL on 127.0.0.1:5434, API on 4000 (now also serves the exported app through `WEB_DIR`), Expo web on 8082. Credentials are only in ignored environment files. Production builds use `EXPO_PUBLIC_API_URL=same-origin`; never publish a bundle pointing to localhost.
+
+Release `acd832a` is pushed and live at https://dokyu.onrender.com. The deployed bundle `entry-7d4a5e1e6c20e94d6cbdc25df0a7ae21.js` includes the restored guides and transparent mascot, with no localhost API baked in. Live guest entry, automatic account/Home guides, Home layouts, health and public guide API were verified. Screenshots use the `live-` prefix. Production health reports email disabled; no real account creation/recovery email was attempted. See the finishing checklist for evidence and remaining device/assistive-technology limits.
 
 Read this first, then `docs/PLAN.md` (the full plan) and `docs/CONTENT.md` (verified research).
 
