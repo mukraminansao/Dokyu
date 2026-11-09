@@ -29,7 +29,7 @@ Release `acd832a` is pushed and live at https://dokyu.onrender.com. The deployed
 Read this first, then `docs/PLAN.md` (the full plan) and `docs/CONTENT.md` (verified research).
 
 ## Who and what
-- **Owner:** Mukramin Bariwa Ansao ("fairy"). GitHub: `mukraminbariwa5-create`. Email: mukraminansao@gmail.com.
+- **Owner:** Mukramin Bariwa Ansao ("fairy"). GitHub: `mukraminansao`. Email: mukraminansao@gmail.com.
 - **Dokyu:** government-documents guide for anyone who processes papers (students, job seekers, teachers, employees, workers, parents, seniors). Tells them exactly what to bring and links the official online registration, so they do the prep at home and visit the office once. Android + web from one Expo codebase. Animated AI guide mascot **Doki**.
 - **Name:** kept as "Dokyu". No PH trademark conflict in Classes 9/42/45. Public handle "DokyuPH".
 
@@ -39,7 +39,7 @@ Read this first, then `docs/PLAN.md` (the full plan) and `docs/CONTENT.md` (veri
 | Plan | **v1.6, citizen-first** (`docs/PLAN.md`). The barangay request system and staff roles moved to §3.2 "Later"; Phase 5 is skipped |
 | Content | 8 guides + first-batch offices verified (`docs/CONTENT.md`). ⚠️ items still to re-check before launch |
 | Design | Locked: "Bayan Blue". Prototype: https://claude.ai/artifact/XvFGTnhEmNFipg2UTstJ1u |
-| Phase 0 | ✅ Done. Pushed to https://github.com/mukraminbariwa5-create/dokyu, CI green (lint, typecheck, tests against Postgres) |
+| Phase 0 | ✅ Done. Pushed to https://github.com/mukraminansao/dokyu, CI green (lint, typecheck, tests against Postgres) |
 | Phase 1 | ✅ Design system done, checked at 390px (phone) and 1440px (desktop), English + Tagalog, large text |
 | Phase 2 | ✅ Accounts + onboarding done and tested in the browser (see below) |
 | Phase 3 | 🟡 Step 1 done: guides rebuilt (exact requirements, Do at home / At the office, labelled official links, Before you go checklist, served from the database, English + Tagalog). Step 2 done: Home matches the Bayan Blue prototype, with basic motion. Next: Office Finder |

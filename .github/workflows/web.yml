@@ -1,6 +1,6 @@
 name: Old preview link (GitHub Pages)
 # The app now lives at https://dokyu.onrender.com (app + accounts + database).
-# The old preview address https://mukraminbariwa5-create.github.io/Dokyu/... sends visitors there,
+# The old preview address https://mukraminansao.github.io/Dokyu/... sends visitors there,
 # keeping the page they asked for, so there is only one app.
 on:
   push:

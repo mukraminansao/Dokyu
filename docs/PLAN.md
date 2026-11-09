@@ -455,7 +455,7 @@ Use **Rive** (rive.app), not a GIF or a looping video. Rive makes a real vector 
 ---
 
 ## 10. Portfolio and GitHub
-- New public repo **Dokyu** on `mukraminbariwa5-create`.
+- New public repo **Dokyu** on `mukraminansao`.
 - README: problem, features, screenshots/GIFs (mascot animation!), tech stack, architecture diagram, security section, disclaimer.
 - `SECURITY.md`, `.env.example`, MIT license (author: Mukramin Bariwa Ansao).
 - Seed data: the 8 verified guides, first-batch offices and holidays, plus a demo user (with a sample tracker and a family member) and a demo Super Admin, clearly labelled, so recruiters can try everything.

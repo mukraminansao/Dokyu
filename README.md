@@ -1,6 +1,6 @@
 # Dokyu
 
-[![CI](https://github.com/mukraminbariwa5-create/dokyu/actions/workflows/ci.yml/badge.svg)](https://github.com/mukraminbariwa5-create/dokyu/actions/workflows/ci.yml)
+[![CI](https://github.com/mukraminansao/dokyu/actions/workflows/ci.yml/badge.svg)](https://github.com/mukraminansao/dokyu/actions/workflows/ci.yml)
 
 **Try it:** https://dokyu.onrender.com (free server: the first visit after a quiet spell takes about a minute to wake up). The old preview address on GitHub Pages now redirects there.
 
