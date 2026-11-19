@@ -1,0 +1,80 @@
+name: Android app
+
+# Builds the Android app (release APK) and checks it on an emulator: the app opens, a demo
+# account signs in against the public demo server, and nothing crashes.
+# Runs on pull requests that touch the app, and on demand from the Actions tab.
+on:
+  pull_request:
+    paths: ['apps/mobile-web/**', 'packages/shared/**', 'pnpm-lock.yaml', '.github/workflows/android.yml', '.github/scripts/android-smoke.sh']
+  workflow_dispatch:
+
+env:
+  # The public demo (render.yaml). Release builds need HTTPS.
+  EXPO_PUBLIC_API_URL: https://dokyu.onrender.com
+  EXPO_NO_TELEMETRY: '1'
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: apps/mobile-web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: pnpm/action-setup@v4
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Generate the Android project
+        run: pnpm exec expo prebuild -p android --no-install
+      - name: Build the release APK
+        working-directory: apps/mobile-web/android
+        run: ./gradlew assembleRelease --no-daemon -PreactNativeArchitectures=x86_64,arm64-v8a
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dokyu-apk
+          path: apps/mobile-web/android/app/build/outputs/apk/release/app-release.apk
+
+  emulator:
+    name: Run on emulator
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dokyu-apk
+      - name: Wake the demo server (Render free plan sleeps)
+        run: |
+          for i in $(seq 1 30); do
+            curl -fsS https://dokyu.onrender.com/api/v1/health >/dev/null 2>&1 && echo "demo server is up" && exit 0
+            sleep 10
+          done
+          echo "::warning::The demo server did not answer; sign-in may fail"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install, open and sign in
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          script: bash .github/scripts/android-smoke.sh app-release.apk
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: emulator-screenshots
+          path: smoke/
