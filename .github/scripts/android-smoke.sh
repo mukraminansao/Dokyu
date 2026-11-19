@@ -26,8 +26,15 @@ screen() {
   ui | tr '>' '\n' | grep -e 'text="[^"]' -e 'content-desc="[^"]' \
     | sed -E 's/.*(text="[^"]*").*(content-desc="[^"]*").*(bounds="[^"]*").*/    \1 \2 \3/' | head -80
 }
+# Close the on-screen keyboard (a swipe over it would type) and answer Android's notification prompt.
+calm() {
+  adb shell dumpsys input_method | grep -q 'mInputShown=true' && adb shell input keyevent KEYCODE_BACK && sleep 1
+  tap "Don’t allow" && sleep 1
+  return 0
+}
 # Scroll the page down by about half a screen.
 scroll_down() {
+  calm
   local w h
   read -r w h <<<"$(adb shell wm size | grep -o '[0-9]\+x[0-9]\+' | tail -1 | tr 'x' ' ')"
   adb shell input swipe $((w / 2)) $((h * 7 / 10)) $((w / 2)) $((h * 3 / 10)) 400
@@ -78,6 +85,7 @@ ok=0
 for i in $(seq 1 45); do
   sleep 2
   alive || fail "the app closed after signing in"
+  calm
   dump=$(ui)
   echo "$dump" | grep -q 'Try the demo account' || { ok=1; break; }
 done
@@ -93,6 +101,7 @@ ok=0
 for i in $(seq 1 20); do
   sleep 2
   alive || fail "the app closed on the account screen"
+  calm
   if ui | grep -q "in the shared demo account"; then ok=1; break; fi
 done
 shot account
