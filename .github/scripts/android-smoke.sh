@@ -30,6 +30,7 @@ screen() {
 calm() {
   adb shell dumpsys input_method | grep -q 'mInputShown=true' && adb shell input keyevent KEYCODE_BACK && sleep 1
   tap "Don’t allow" && sleep 1
+  ui | grep -q "isn't responding" && tap "Wait" && sleep 2   # a slow emulator's system dialog, not the app
   return 0
 }
 # Scroll the page down by about half a screen.
@@ -55,6 +56,7 @@ adb shell am start -W -n "$PKG/.MainActivity" || fail "the app did not open"
 for i in $(seq 1 30); do
   sleep 2
   alive || fail "the app closed on start"
+  calm
   [ "$i" = 3 ] && { shot first-screen; screen "first screen"; }
   tap "Skip" && continue
   break
