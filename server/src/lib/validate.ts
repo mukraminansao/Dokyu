@@ -1,12 +1,12 @@
 import type { Response } from 'express';
-import type { ZodType, ZodTypeDef } from 'zod';
+import type { ZodType } from 'zod';
 
 /**
  * Parses a request body with a shared Zod schema. On failure answers 400 with one message per field
  * (the same messages the app shows under each input) and returns null.
  */
 export function validate<T>(
-  schema: ZodType<T, ZodTypeDef, unknown>,
+  schema: ZodType<T, unknown>,
   body: unknown,
   res: Response,
 ): T | null {

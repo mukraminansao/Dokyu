@@ -9,3 +9,8 @@ onlyBuiltDependencies:
   - '@prisma/engines'
   - esbuild
   - prisma
+
+# Security: newer patched versions of indirect dependencies (pnpm audit).
+overrides:
+  deepmerge-ts: ^8.0.2
+  "@expo/fingerprint>minimatch": ^11.0.1

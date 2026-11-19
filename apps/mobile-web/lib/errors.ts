@@ -2,7 +2,7 @@
  * Validation and API messages come from the shared Zod schemas and the server in English.
  * This shows them in Tagalog when the app is in Tagalog; unknown messages stay in English.
  */
-import type { ZodType, ZodTypeDef } from 'zod';
+import type { ZodType } from 'zod';
 import { ApiError } from './api';
 
 const TL: Record<string, string> = {
@@ -34,7 +34,7 @@ export function translateError(message: string, language: string): string {
 
 /** Field messages for a form, checked on the device before anything is sent. */
 export function checkFields<T>(
-  schema: ZodType<T, ZodTypeDef, unknown>,
+  schema: ZodType<T, unknown>,
   values: unknown,
 ): Record<string, string> {
   const parsed = schema.safeParse(values);

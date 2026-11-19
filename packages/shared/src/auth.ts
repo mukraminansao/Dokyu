@@ -32,7 +32,7 @@ export const signupSchema = z.object({
   language: languageSchema.default('en'),
   /** Data Privacy Act (RA 10173) consent; sign-up is refused without it. */
   consent: z.literal(true, {
-    errorMap: () => ({ message: 'Please agree to the privacy notice to continue' }),
+    error: 'Please agree to the privacy notice to continue',
   }),
 });
 
