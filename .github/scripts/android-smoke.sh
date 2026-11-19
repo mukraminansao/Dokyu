@@ -20,8 +20,15 @@ tap() {
   adb shell input tap $(((x1 + x2) / 2)) $(((y1 + y2) / 2))
 }
 alive() { adb shell pidof "$PKG" >/dev/null; }
+# Print the words on screen (text and accessibility labels) to the job log.
+screen() { echo "--- on screen ($1):"; ui | tr '>' '\n' | grep -o -e 'text="[^"]\+"' -e 'content-desc="[^"]\+"' | sed 's/^/    /' | head -40; }
 open_link() { adb shell am start -W -a android.intent.action.VIEW -d "$1" "$PKG" >/dev/null; }
-fail() { echo "::error::$1"; shot failed; adb logcat -d > "$OUT/logcat.txt"; exit 1; }
+fail() {
+  echo "::error::$1"; shot failed; screen "when it failed"
+  adb logcat -d > "$OUT/logcat.txt"
+  echo "--- app log (errors and React Native):"; grep -E "ReactNativeJS|AndroidRuntime|FATAL" "$OUT/logcat.txt" | tail -30
+  exit 1
+}
 
 adb install -r "$APK" || fail "the APK did not install"
 adb logcat -c
@@ -31,16 +38,19 @@ adb shell am start -W -n "$PKG/.MainActivity" || fail "the app did not open"
 for i in $(seq 1 30); do
   sleep 2
   alive || fail "the app closed on start"
-  [ "$i" = 3 ] && shot first-screen
+  [ "$i" = 3 ] && { shot first-screen; screen "first screen"; }
   tap "Skip" && continue
   break
 done
 sleep 3
 shot after-intro
+screen "after the intro"
 alive || fail "the app closed after the intro"
 
 # Sign in with the shared demo account.
 open_link "dokyu://sign-in"
+sleep 4
+screen "after opening dokyu://sign-in"
 found=0
 for i in $(seq 1 30); do
   sleep 2
