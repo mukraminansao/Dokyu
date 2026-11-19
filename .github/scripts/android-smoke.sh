@@ -26,7 +26,7 @@ open_link() { adb shell am start -W -a android.intent.action.VIEW -d "$1" "$PKG"
 fail() {
   echo "::error::$1"; shot failed; screen "when it failed"
   adb logcat -d > "$OUT/logcat.txt"
-  echo "--- app log (errors and React Native):"; grep -E "ReactNativeJS|AndroidRuntime|FATAL" "$OUT/logcat.txt" | tail -30
+  echo "--- app log (errors and React Native):"; grep -E "ReactNativeJS|FATAL EXCEPTION|AndroidRuntime: (Process|java)" "$OUT/logcat.txt" | tail -30
   exit 1
 }
 
