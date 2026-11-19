@@ -21,7 +21,7 @@ tap() {
 }
 alive() { adb shell pidof "$PKG" >/dev/null; }
 # Print the words on screen (text and accessibility labels) to the job log.
-screen() { echo "--- on screen ($1):"; ui | tr '>' '\n' | grep -o -e 'text="[^"]\+"' -e 'content-desc="[^"]\+"' | sed 's/^/    /' | head -40; }
+screen() { echo "--- on screen ($1):"; ui | tr '>' '\n' | grep -o -e 'text="[^"]\+"' -e 'content-desc="[^"]\+"' | sed 's/^/    /' | head -80; }
 open_link() { adb shell am start -W -a android.intent.action.VIEW -d "$1" "$PKG" >/dev/null; }
 fail() {
   echo "::error::$1"; shot failed; screen "when it failed"
@@ -55,7 +55,9 @@ found=0
 for i in $(seq 1 30); do
   sleep 2
   alive || fail "the app closed on the sign-in screen"
+  tap "Skip" && continue                       # Doki's tour of the sign-in screen
   if ui | grep -q 'Try the demo account'; then found=1; break; fi
+  adb shell input swipe 540 1700 540 900 300   # the demo button is below the form
 done
 [ "$found" = 1 ] || fail "the sign-in screen with the demo account button never appeared"
 shot sign-in
@@ -72,6 +74,7 @@ done
 [ "$ok" = 1 ] || fail "still on the sign-in screen 90 s after tapping the demo account"
 sleep 3
 shot signed-in
+screen "after signing in"
 tap "Skip"; sleep 2
 
 # The account screen shows the shared-demo notice only when signed in to the demo account.
