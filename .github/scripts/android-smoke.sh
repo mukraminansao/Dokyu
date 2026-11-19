@@ -21,7 +21,17 @@ tap() {
 }
 alive() { adb shell pidof "$PKG" >/dev/null; }
 # Print the words on screen (text and accessibility labels) to the job log.
-screen() { echo "--- on screen ($1):"; ui | tr '>' '\n' | grep -o -e 'text="[^"]\+"' -e 'content-desc="[^"]\+"' | sed 's/^/    /' | head -80; }
+screen() {
+  echo "--- on screen ($1), $(adb shell wm size | tr -d '\r'):"
+  ui | tr '>' '\n' | grep -e 'text="[^"]' -e 'content-desc="[^"]' \
+    | sed -E 's/.*(text="[^"]*").*(content-desc="[^"]*").*(bounds="[^"]*").*/    \1 \2 \3/' | head -80
+}
+# Scroll the page down by about half a screen.
+scroll_down() {
+  local w h
+  read -r w h <<<"$(adb shell wm size | grep -o '[0-9]\+x[0-9]\+' | tail -1 | tr 'x' ' ')"
+  adb shell input swipe $((w / 2)) $((h * 7 / 10)) $((w / 2)) $((h * 3 / 10)) 400
+}
 open_link() { adb shell am start -W -a android.intent.action.VIEW -d "$1" "$PKG" >/dev/null; }
 fail() {
   echo "::error::$1"; shot failed; screen "when it failed"
@@ -57,7 +67,7 @@ for i in $(seq 1 30); do
   alive || fail "the app closed on the sign-in screen"
   tap "Skip" && continue                       # Doki's tour of the sign-in screen
   if ui | grep -q 'Try the demo account'; then found=1; break; fi
-  adb shell input swipe 540 1700 540 900 300   # the demo button is below the form
+  scroll_down   # the demo button is below the form
 done
 [ "$found" = 1 ] || fail "the sign-in screen with the demo account button never appeared"
 shot sign-in
